@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">GIS WEB - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-text: #000;
+            --secondary-text: #666;
+            --border-color: #ccc;
+            --input-bg: #fff;
+            --button-bg: #000;
+            --button-text: #fff;
+            --panel-left-bg: #fff;
+            --panel-right-bg: #f0f0f0;
+            --sidebar-bg: #f5f5f5;
+            --sidebar-text: #333;
+            --header-bg: #fff;
+            --header-border: #ddd;
+            --content-bg: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--primary-text);
+            background-color: var(--panel-left-bg);
+        }
+
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .logo-text {
+            font-weight: 500;
+            font-size: 1.25rem;
+        }
+
+        .login-form-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 25rem;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            background-color: var(--input-bg);
+            color: var(--primary-text);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #333;
+        }
+
+        .right-panel {
+            flex: 1;
+            background-color: var(--panel-right-bg);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .placeholder-image {
+            width: 80%;
+            max-width: 400px;
+            height: auto;
+            opacity: 0.4;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .form-section h3 {
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--form-border);
+            padding-bottom: 0.25rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 500;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select {
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+        }
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .form-buttons button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+        .form-buttons .submit-btn {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Home Page Styles */
+        #home-page {
+            display: none;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .dashboard-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--header-border);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--header-border);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-header .user-name {
+            font-weight: 500;
+            color: var(--sidebar-text);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.25rem;
+            color: var(--secondary-text);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .sidebar-nav-item i {
+            width: 24px;
+            margin-right: 0.75rem;
+        }
+
+        .sidebar-nav-item.active,
+        .sidebar-nav-item:hover {
+            background-color: #e0e0e0;
+            color: var(--primary-text);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--header-border);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .search-bar {
+            width: 300px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            font-size: 1rem;
+        }
+        
+        .search-bar i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary-text);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        
+        .header-button.new-user {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+        .dashboard-content {
+            flex-grow: 1;
+            background-color: var(--content-bg);
+            padding: 2rem;
+        }
+
+        /* Table Styles */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+        }
+
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-table th {
+            font-weight: 500;
+            color: var(--secondary-text);
+            white-space: nowrap;
+        }
+
+        .content-table th .sort-icon {
+            margin-left: 0.5rem;
+            color: #999;
+        }
+        
+        .content-table tbody tr:hover {
+            background-color: #fafafa;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #fff;
+            background-color: #666;
+            white-space: nowrap;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #fff;
+            background-color: #007bff;
+            white-space: nowrap;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .status-active {
+            background-color: #28a745;
+        }
+
+        .status-inactive {
+            background-color: #dc3545;
+        }
+        
+        .action-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #fff;
+            background-color: #6c757d;
+            margin-right: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-icons i {
+            cursor: pointer;
+            color: var(--secondary-text);
+            transition: color 0.2s ease;
+        }
+        
+        .action-icons i:hover {
+            color: var(--primary-text);
+        }
+
+        .checkbox-cell {
+            text-align: center;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .modal-header {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .modal-close {
+            color: #aaa;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .modal-input-group {
+            margin-bottom: 1rem;
+        }
+
+        .modal-input-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+            margin-bottom: 0.25rem;
+        }
+        
+        .modal-input-group input,
+        .modal-input-group select,
+        .modal-input-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            background-color: var(--input-bg);
+            color: var(--primary-text);
+        }
+        
+        .modal-input-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M7 7L10 10L13 7' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        
+        .modal-input-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        
+        .modal-full-width {
+            grid-column: span 2;
+        }
+
+        .modal-roles-group {
+            grid-column: span 2;
+            margin-top: 1rem;
+        }
+        
+        .modal-actions-group {
+            grid-column: span 2;
+            margin-top: 1rem;
+        }
+
+        .modal-roles-grid, .modal-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        
+        .modal-actions-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .modal-roles-grid label, .modal-actions-grid label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .modal-footer button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .modal-footer .cancel-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--secondary-text);
+        }
+
+        .modal-footer .save-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+        }
+
+        .modal-footer .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: 1px solid #dc3545;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .modal-header {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        .modal-close {
+            color: #aaa;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Delete Confirmation Modal */
+        #delete-modal .modal-content {
+            text-align: center;
+        }
+
+        #delete-modal p {
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .right-panel {
+                display: none;
+            }
+
+            .left-panel {
+                padding: 1.5rem;
+            }
+
+            .login-form {
+                max-width: 100%;
+            }
+
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 1rem;
+                border-right: none;
+                border-bottom: 1px solid var(--header-border);
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .header-left, .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .content-table th,
+            .content-table td {
+                padding: 0.75rem;
+            }
+            
+            .modal-form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Página de Login -->
+    <!-- <div id="login-page" class="main-container" style="display: flex;">
+        <div class="left-panel">
+            <header class="logo-container">
+                <img src="https://placehold.co/24x24/000000/FFFFFF?text=G" alt="Logo" class="logo-icon">
+                <span class="logo-text">GIS WEB</span>
+            </header>
+            <div class="login-form-container">
+                <form id="loginForm" class="login-form">
+                    <h1 class="form-title">INGRESAR</h1>
+                    <p class="form-subtitle">Ingresa tu usuario y contraseña</p>
+                    <div class="input-group">
+                        <label for="username">usuario</label>
+                        <input type="text" id="username" name="username" value="admin" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">contrasena</label>
+                        <input type="password" id="password" name="password" value="********" required>
+                    </div>
+                    <button type="submit" class="submit-button">enviar</button>
+                </form>
+            </div>
+        </div>
+        <div class="right-panel">
+            <svg class="placeholder-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <rect x="0" y="0" width="100" height="100" fill="#E0E0E0"/>
+                <circle cx="50" cy="50" r="25" fill="#C0C0C0"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#A0A0A0" stroke-width="2"/>
+                <line x1="50" y1="10" x2="50" y2="90" stroke="#A0A0A0" stroke-width="2"/>
+                <line x1="10" y1="50" x2="90" y2="50" stroke="#A0A0A0" stroke-width="2"/>
+                <line x1="25" y1="25" x2="75" y2="75" stroke="#A0A0A0" stroke-width="2"/>
+                <line x1="25" y1="75" x2="75" y2="25" stroke="#A0A0A0" stroke-width="2"/>
+                <rect x="35" y="40" width="30" height="20" fill="#808080"/>
+            </svg>
+        </div>
+    </div> -->
+
+    <!-- Página de Inicio -->
+    <div id="home-page" style="display: flex;">
+        <div class="dashboard-container">
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="user-name">Roberto Lopez</span>
+                    <button class="sidebar-button" onclick="logout()">Cerrar Sesión</button>
+                </div>
+                <ul class="sidebar-nav">
+                    <li id="dashboard-nav" class="sidebar-nav-item active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        dashboard
+                    </li>
+                    <li id="users-nav" class="sidebar-nav-item">
+                        <i class="fas fa-users"></i>
+                        Usuarios
+                    </li>
+                    <li id="menus-nav" class="sidebar-nav-item">
+                        <i class="fas fa-bars"></i>
+                        Menus
+                    </li>
+                    <li id="roles-nav" class="sidebar-nav-item">
+                        <i class="fas fa-user-tag"></i>
+                        Roles
+                    </li>
+                    <li id="permissions-nav" class="sidebar-nav-item">
+                        <i class="fas fa-shield-alt"></i>
+                        Permisos
+                    </li>
+                    <li id="establecimientos-nav" class="sidebar-nav-item">
+                        <i class="fas fa-building"></i>
+                        Establecimientos
+                    </li>
+                    <!-- <li id="healthposts-nav" class="sidebar-nav-item">
+                        <i class="fas fa-clinic-medical"></i>
+                        Puesto de Salud
+                    </li> -->
+                </ul>
+            </aside>
+            <main class="main-content">
+                <header class="header">
+                    <div class="header-left">
+                        <h1 id="header-title" class="header-title"></h1>
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <button class="header-button">Notificacion</button>
+                        <button class="header-button">Perfil</button>
+                        <button class="header-button new-user" id="new-entity-button" style="display: none;">
+                            <i class="fas fa-plus-circle"></i> nuevo
+                        </button>
+                    </div>
+                </header>
+                <div id="content-container" class="dashboard-content">
+                    <!-- El contenido de las páginas se renderizará aquí -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de Crear/Editar Usuario -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="user-modal-title">Crear usuario</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="user-form">
+                <p>Formulario de datos</p>
+                <div class="modal-form-grid">
+                    <div class="modal-input-group">
+                        <label for="doc">Documento</label>
+                        <input type="text" id="doc" name="doc" required>
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="first_surname">Primer Apellido</label>
+                        <input type="text" id="first_surname" name="first_surname" required>
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="second_surname">Segundo Apellido</label>
+                        <input type="text" id="second_surname" name="second_surname">
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="dob">Fecha nacimiento</label>
+                        <input type="date" id="dob" name="dob">
+                    </div>
+                    <div class="modal-input-group">
+                        <label for="cellphone">Celular</label>
+                        <input type="tel" id="cellphone" name="cellphone">
+                    </div>
+                    <div class="modal-input-group modal-full-width">
+                        <label for="address">Direccion</label>
+                        <textarea id="address" name="address"></textarea>
+                    </div>
+                </div>
+                <div class="modal-roles-group">
+                    <label>Asigna Roles</label>
+                    <div class="modal-roles-grid">
+                        <label><input type="checkbox" name="role" value="ADMINISTRADOR"> ADMIN</label>
+                        <label><input type="checkbox" name="role" value="PERSONAL DE SALUD"> PERSONAL DE SALUD</label>
+                        <label><input type="checkbox" name="role" value="TÉCNICO"> TÉCNICO</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación de Eliminación -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>¿Estas seguro?</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <p id="delete-message">El usuario se dará de baja.</p>
+            <div class="modal-footer" style="justify-content: center;">
+                <button type="button" class="cancel-btn">Cancel</button>
+                <button type="button" class="delete-btn">Sí, estoy seguro</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Crear/Editar Menú -->
+    <div id="menu-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="menu-modal-title">Crear Menú</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="menu-form">
+                <div class="modal-input-group">
+                    <label for="menu-name">Nombre</label>
+                    <input type="text" id="menu-name" name="name" required>
+                </div>
+                <div class="modal-input-group">
+                    <label for="menu-section">Sección</label>
+                    <select id="menu-section" name="section">
+                        <option value="Principal">Principal</option>
+                        <option value="Configuración">Configuración</option>
+                    </select>
+                </div>
+                <div class="modal-input-group">
+                    <label for="menu-status">Estado</label>
+                    <select id="menu-status" name="status">
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal de Crear/Editar Rol -->
+    <div id="role-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="role-modal-title">Crear Rol</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="role-form">
+                <div class="modal-input-group">
+                    <label for="role-name">Nombre</label>
+                    <input type="text" id="role-name" name="name" required>
+                </div>
+                <div class="modal-input-group">
+                    <label for="role-level">Nivel</label>
+                    <select id="role-level" name="level">
+                        <option value="DEPARTAMENTAL">DEPARTAMENTAL</option>
+                        <option value="RED">RED</option>
+                        <option value="MUNICIPIO">MUNICIPIO</option>
+                        <option value="ESTABLECIMIENTO">ESTABLECIMIENTO</option>
+                    </select>
+                </div>
+                <div class="modal-input-group">
+                    <label for="role-status">Estado</label>
+                    <select id="role-status" name="status">
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal de Crear/Editar Permiso -->
+    <div id="permission-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="permission-modal-title">Crear Permiso</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="permission-form">
+                <div class="modal-input-group">
+                    <label for="permission-role">Rol</label>
+                    <select id="permission-role" name="role">
+                        <!-- Las opciones se generarán dinámicamente -->
+                    </select>
+                </div>
+                <div class="modal-input-group">
+                    <label for="permission-module">Módulo</label>
+                    <select id="permission-module" name="module">
+                        <!-- Las opciones se generarán dinámicamente -->
+                    </select>
+                </div>
+                <div class="modal-actions-group">
+                    <label>Acciones</label>
+                    <div class="modal-actions-grid">
+                        <label><input type="checkbox" name="action" value="read"> read</label>
+                        <label><input type="checkbox" name="action" value="create"> create</label>
+                        <label><input type="checkbox" name="action" value="update"> update</label>
+                        <label><input type="checkbox" name="action" value="delete"> delete</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Editar Establecimiento -->
+    <div id="establishment-form-modal" class="modal">
+        <div class="modal-content" style="margin-top: 10rem;">
+            <div class="modal-header">
+                <h2 id="form-modal-title">Formulario de Establecimiento</h2>
+                <span class="modal-close-form">&times;</span>
+            </div>
+                <form id="establishment-form" class="form-container">
+                    <input type="hidden" id="establishment-id">
+                    
+                    <div class="form-section">
+                        <h3>Infraestructura</h3>
+                        <div class="form-group">
+                            <label for="beds">Camas:</label>
+                            <input type="number" id="beds" name="beds" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="operatingRooms">Sala de Operaciones:</label>
+                            <select id="operatingRooms" name="operatingRooms">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryRooms">Sala de Partos:</label>
+                            <select id="deliveryRooms" name="deliveryRooms">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="anesthesiologyRoom">Sala de Anestesiología:</label>
+                            <select id="anesthesiologyRoom" name="anesthesiologyRoom">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vaccinationRoom">Vacunatorio:</label>
+                            <select id="vaccinationRoom" name="vaccinationRoom">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Equipamiento</h3>
+                        <div class="form-group">
+                            <label for="vitalSignsMonitor">Monitor de Signos Vitales:</label>
+                            <input type="number" id="vitalSignsMonitor" name="vitalSignsMonitor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="xRay">Equipo de Rayos X Digital:</label>
+                            <select id="xRay" name="xRay">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="artificialRespirator">Respirador Artificial:</label>
+                            <select id="artificialRespirator" name="artificialRespirator">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardiograph">Cardiógrafo:</label>
+                            <select id="cardiograph" name="cardiograph">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ophthalmoscope">Oftalmoscopio:</label>
+                            <select id="ophthalmoscope" name="ophthalmoscope">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Recurso Humano</h3>
+                        <div class="form-group">
+                            <label for="doctors">Médicos Generales:</label>
+                            <input type="number" id="doctors" name="doctors" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nurses">Enfermeros:</label>
+                            <input type="number" id="nurses" name="nurses" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="anesthesiologists">Anestesiólogos:</label>
+                            <select id="anesthesiologists" name="anesthesiologists">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthAttendants">Partólogos:</label>
+                            <select id="birthAttendants" name="birthAttendants">
+                                <option value="Sí">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Vehículos</h3>
+                        <div class="form-group">
+                            <label for="ambulances">Ambulancias:</label>
+                            <input type="number" id="ambulances" name="ambulances" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inService">En funcionamiento:</label>
+                            <input type="number" id="inService" name="inService" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inRepair">En reparación:</label>
+                            <input type="number" id="inRepair" name="inRepair" required>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="cancel-btn">Cancelar</button>
+                        <button type="submit" class="submit-btn">Guardar</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+
+    <script>
+        const loginPage = document.getElementById('login-page');
+        const homePage = document.getElementById('home-page');
+        const pageTitle = document.getElementById('page-title');
+        const headerTitle = document.getElementById('header-title');
+        const navItems = document.querySelectorAll('.sidebar-nav-item');
+        const contentContainer = document.getElementById('content-container');
+        const newEntityButton = document.getElementById('new-entity-button');
+        const userModal = document.getElementById('user-modal');
+        const menuModal = document.getElementById('menu-modal');
+        const roleModal = document.getElementById('role-modal');
+        const permissionModal = document.getElementById('permission-modal');
+        const deleteModal = document.getElementById('delete-modal');
+        const userModalTitle = document.getElementById('user-modal-title');
+        const menuModalTitle = document.getElementById('menu-modal-title');
+        const roleModalTitle = document.getElementById('role-modal-title');
+        const permissionModalTitle = document.getElementById('permission-modal-title');
+        const userForm = document.getElementById('user-form');
+        const menuForm = document.getElementById('menu-form');
+        const roleForm = document.getElementById('role-form');
+        const permissionForm = document.getElementById('permission-form');
+        const establishmentFormModal = document.getElementById('establishment-form-modal');
+        let currentEntityId = null;
+        let currentEntityType = null;
+
+        let usersData = [
+            { id: 1, doc: '12345678', name: 'Juan', first_surname: 'Pérez', second_surname: 'García', roles: ['ADMINISTRADOR'], status: 'activo' },
+            { id: 2, doc: '87654321', name: 'María', first_surname: 'López', second_surname: 'Martínez', roles: ['PERSONAL DE SALUD'], status: 'inactivo' },
+            { id: 3, doc: '11223344', name: 'Carlos', first_surname: 'González', second_surname: 'Rodríguez', roles: ['TÉCNICO'], status: 'activo' },
+            { id: 4, doc: '44332211', name: 'Ana', first_surname: 'Sánchez', second_surname: 'Ramírez', roles: ['ADMINISTRADOR', 'TÉCNICO'], status: 'activo' },
+            { id: 5, doc: '98765432', name: 'Luis', first_surname: 'Díaz', second_surname: 'Hernández', roles: ['PERSONAL DE SALUD'], status: 'activo' },
+            { id: 6, doc: '23456789', name: 'Sofía', first_surname: 'Torres', second_surname: 'Vargas', roles: ['ADMINISTRADOR'], status: 'inactivo' },
+            { id: 7, doc: '34567890', name: 'José', first_surname: 'Flores', second_surname: 'Ruiz', roles: ['TÉCNICO'], status: 'activo' },
+            { id: 8, doc: '56789012', name: 'Elena', first_surname: 'Jiménez', second_surname: 'Mendoza', roles: ['PERSONAL DE SALUD'], status: 'activo' },
+            { id: 9, doc: '78901234', name: 'Manuel', first_surname: 'Castro', second_surname: 'Morales', roles: ['TÉCNICO', 'PERSONAL DE SALUD'], status: 'inactivo' },
+            { id: 10, doc: '90123456', name: 'Isabel', first_surname: 'Ortega', second_surname: 'Paredes', roles: ['ADMINISTRADOR'], status: 'activo' }
+        ];
+
+        let menusData = [
+            { id: 1, name: 'dashboard', section: 'Principal', status: 'activo' },
+            { id: 2, name: 'Usuarios', section: 'Principal', status: 'activo' },
+            { id: 3, name: 'Roles', section: 'Configuración', status: 'activo' },
+            { id: 4, name: 'Permisos', section: 'Configuración', status: 'inactivo' },
+        ];
+        
+        let rolesData = [
+            { id: 1, name: 'ADMINISTRADOR', level: 'DEPARTAMENTAL', status: 'activo' },
+            { id: 2, name: 'PERSONAL DE SALUD', level: 'ESTABLECIMIENTO', status: 'activo' },
+            { id: 3, name: 'TÉCNICO', level: 'MUNICIPIO', status: 'inactivo' },
+            { id: 4, name: 'SUPERVISOR', level: 'RED', status: 'activo' },
+        ];
+        
+        let permissionsData = [
+            { id: 1, role: 'ADMINISTRADOR', module: 'Usuarios', actions: ['read', 'create', 'update', 'delete'] },
+            { id: 2, role: 'PERSONAL DE SALUD', module: 'Establecimientos', actions: ['read', 'update'] },
+            { id: 3, role: 'TÉCNICO', module: 'Puesto de Salud', actions: ['read', 'create'] },
+            { id: 4, role: 'ADMINISTRADOR', module: 'Roles', actions: ['read', 'create', 'update', 'delete'] },
+            { id: 5, role: 'SUPERVISOR', module: 'Dashboard', actions: ['read'] },
+        ];
+
+        let establecimientoData = [
+            {
+                id: 1,
+                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
+                establishment: 'Hospital General Dr. Juan Pereda',
+                municipality: 'Cochabamba',
+                status: 'activo',
+                address: 'Av. Heroínas esq. Ayacucho',
+                phone: '445-6789',
+                coords: { top: '35%', left: '20%' },
+                infrastructure: { beds: 50, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 10, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 3, inService: 2, inRepair: 1 },
+                humanResources: { doctors: 25, nurses: 30, anesthesiologists: 'Sí', birthAttendants: 'No' },
+                details: {
+                    level: 'Tercer Nivel',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Pediatría', 'Cirugía General', 'Cardiología'],
+                    email: 'hgp.cocha@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                }
+            },
+            {
+                id: 2,
+                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
+                establishment: 'Puesto de Salud de Villa Tunari',
+                municipality: 'Villa Tunari',
+                status: 'activo',
+                address: 'Calle Principal',
+                phone: '478-1234',
+                coords: { top: '60%', left: '70%' },
+                infrastructure: { beds: 5, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 2, nurses: 4, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: 'Primer Nivel',
+                    hours: '8:00 - 16:00',
+                    services: ['Medicina General', 'Vacunación', 'Atención Primaria'],
+                    email: 'psvillatunari@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                }
+            },
+            {
+                id: 3,
+                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
+                establishment: 'Centro de Salud de Sacaba',
+                municipality: 'Sacaba',
+                status: 'inactivo',
+                address: 'Plaza Principal s/n',
+                phone: '456-7890',
+                coords: { top: '40%', left: '45%' },
+                infrastructure: { beds: 20, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 4, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
+                humanResources: { doctors: 10, nurses: 15, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                details: {
+                    level: 'Segundo Nivel',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Laboratorio', 'Rayos X'],
+                    email: 'cssacaba@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                }
+            },
+            {
+                id: 4,
+                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
+                establishment: 'Hospital del Sur',
+                municipality: 'Cercado',
+                status: 'activo',
+                address: 'Av. Petrolera',
+                phone: '423-9876',
+                coords: { top: '55%', left: '30%' },
+                infrastructure: { beds: 40, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 15, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 4, inService: 3, inRepair: 1 },
+                humanResources: { doctors: 30, nurses: 40, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                details: {
+                    level: 'Tercer Nivel',
+                    hours: '24/7',
+                    services: ['Cirugía', 'Urgencias', 'Medicina Interna', 'Ginecología'],
+                    email: 'hsur@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                }
+            },
+             {
+                id: 5,
+                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
+                establishment: 'Hospital de Tarata',
+                municipality: 'Tarata',
+                status: 'activo',
+                address: 'Plaza Principal s/n',
+                phone: '422-5566',
+                coords: { top: '25%', left: '60%' },
+                infrastructure: { beds: 15, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 5, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'No', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 8, nurses: 10, anesthesiologists: 'No', birthAttendants: 'Sí' },
+                details: {
+                    level: 'Segundo Nivel',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Odontología', 'Laboratorio Clínico'],
+                    email: 'htaratamuni@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                }
+            },
+             {
+                id: 6,
+                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
+                establishment: 'Puesto de Salud Quillacollo',
+                municipality: 'Quillacollo',
+                status: 'inactivo',
+                address: 'Calle Final',
+                phone: '433-2211',
+                coords: { top: '70%', left: '50%' },
+                infrastructure: { beds: 8, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'No' },
+                equipment: { vitalSignsMonitor: 2, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
+                humanResources: { doctors: 5, nurses: 6, anesthesiologists: 'Sí', birthAttendants: 'No' },
+                details: {
+                    level: 'Primer Nivel',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria', 'Vacunación'],
+                    email: 'psquillacollo@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                }
+            }
+        ];
+        
+        function logout() {
+            document.location.href = 'index.html';
+        }
+
+        // Función para renderizar la tabla de usuarios
+        function renderUsersTable() {
+            headerTitle.textContent = 'Usuarios';
+            newEntityButton.style.display = 'block';
+            contentContainer.innerHTML = `
+                <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell"><input type="checkbox"></th>
+                                <th>Nrodocumento <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Nombre <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Primer apellido <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Segundo apellido <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Roles <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Estado <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${usersData.map(user => `
+                                <tr data-id="${user.id}">
+                                    <td class="checkbox-cell"><input type="checkbox"></td>
+                                    <td>${user.doc}</td>
+                                    <td>${user.name}</td>
+                                    <td>${user.first_surname}</td>
+                                    <td>${user.second_surname || ''}</td>
+                                    <td>
+                                        <div class="user-roles">
+                                            ${user.roles.map(role => `<span class="role-badge">${role}</span>`).join('')}
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge status-${user.status === 'activo' ? 'active' : 'inactive'}">${user.status}</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i class="fas fa-pencil-alt edit-icon" data-type="user"></i>
+                                            <i class="fas fa-trash-alt delete-icon" data-type="user"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            attachActionListeners();
+        }
+        
+        // Función para renderizar la tabla de menús
+        function renderMenusTable() {
+            headerTitle.textContent = 'Menus';
+            newEntityButton.style.display = 'block';
+            contentContainer.innerHTML = `
+                <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell"><input type="checkbox"></th>
+                                <th>Nombre <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Sección <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Estado <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${menusData.map(menu => `
+                                <tr data-id="${menu.id}">
+                                    <td class="checkbox-cell"><input type="checkbox"></td>
+                                    <td>${menu.name}</td>
+                                    <td>${menu.section}</td>
+                                    <td><span class="status-badge status-${menu.status === 'activo' ? 'active' : 'inactive'}">${menu.status}</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i class="fas fa-pencil-alt edit-icon" data-type="menu"></i>
+                                            <i class="fas fa-trash-alt delete-icon" data-type="menu"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            attachActionListeners();
+        }
+        
+        // Función para renderizar la tabla de roles
+        function renderRolesTable() {
+            headerTitle.textContent = 'Roles';
+            newEntityButton.style.display = 'block';
+            contentContainer.innerHTML = `
+                <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell"><input type="checkbox"></th>
+                                <th>Nombre <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Nivel <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Estado <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rolesData.map(role => `
+                                <tr data-id="${role.id}">
+                                    <td class="checkbox-cell"><input type="checkbox"></td>
+                                    <td>${role.name}</td>
+                                    <td><span class="level-badge">${role.level}</span></td>
+                                    <td><span class="status-badge status-${role.status === 'activo' ? 'active' : 'inactive'}">${role.status}</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i class="fas fa-pencil-alt edit-icon" data-type="role"></i>
+                                            <i class="fas fa-trash-alt delete-icon" data-type="role"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            attachActionListeners();
+        }
+        
+        // Función para renderizar la tabla de permisos
+        function renderPermissionsTable() {
+            headerTitle.textContent = 'Permisos';
+            newEntityButton.style.display = 'block';
+            contentContainer.innerHTML = `
+                <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell"><input type="checkbox"></th>
+                                <th>Rol <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Módulo <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Acciones <i class="fas fa-arrow-down sort-icon"></i></th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${permissionsData.map(permission => `
+                                <tr data-id="${permission.id}">
+                                    <td class="checkbox-cell"><input type="checkbox"></td>
+                                    <td><span class="role-badge">${permission.role}</span></td>
+                                    <td>${permission.module}</td>
+                                    <td>
+                                        ${permission.actions.map(action => `<span class="action-badge">${action}</span>`).join('')}
+                                    </td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i class="fas fa-pencil-alt edit-icon" data-type="permission"></i>
+                                            <i class="fas fa-trash-alt delete-icon" data-type="permission"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            attachActionListeners();
+        }
+
+        // Función para renderizar el dashboard
+        function renderDashboard() {
+            headerTitle.textContent = 'dashboard';
+            newEntityButton.style.display = 'none';
+            contentContainer.innerHTML = `
+                <!-- Contenido principal de la página de inicio -->
+            `;
+        }
+        
+        function renderEstablecimientosTable() {
+            headerTitle.textContent = 'Establecimientos';
+            newEntityButton.style.display = 'none';
+            contentContainer.innerHTML = `
+            <div class="table-container">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>CÓDIGO SNIS</th>
+                                <th>ESTABLECIMIENTO</th>
+                                <th>MUNICIPIO</th>
+                                <th>ESTADO</th>
+                                <th>DIRECCIÓN</th>
+                                <th>TELÉFONO</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${establecimientoData.map(center => `
+                                <tr data-id="${center.id}">
+                                    <td>${center.snis.slice(0, 2) + center.snis.slice(-4)}</td>
+                                    <td>${center.establishment}</td>
+                                    <td>${center.municipality}</td>
+                                    <td>${center.status === 'activo' ? 'Activo' : 'Inactivo'}</td>
+                                    <td>${center.address}</td>
+                                    <td>${center.phone}</td>
+                                   <td>
+                                        <div class="action-icons">
+                                            <i class="fas fa-edit edit-establishment-icon" onclick="openEditModal(${center.id}, 'establishment')"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>`
+            
+        }
+
+        // Función para poblar las opciones de los modales
+        function populateModalOptions(type) {
+            if (type === 'permission') {
+                const roleSelect = document.getElementById('permission-role');
+                const moduleSelect = document.getElementById('permission-module');
+                
+                // Limpiar opciones existentes
+                roleSelect.innerHTML = '';
+                moduleSelect.innerHTML = '';
+                
+                // Roles
+                rolesData.forEach(role => {
+                    const option = document.createElement('option');
+                    option.value = role.name;
+                    option.textContent = role.name;
+                    roleSelect.appendChild(option);
+                });
+                
+                // Módulos (usando los nombres de los elementos del menú)
+                navItems.forEach(item => {
+                    if (item.id !== 'dashboard-nav' && item.id !== 'permissions-nav') {
+                        const option = document.createElement('option');
+                        option.value = item.textContent.trim();
+                        option.textContent = item.textContent.trim();
+                        moduleSelect.appendChild(option);
+                    }
+                });
+            }
+        }
+
+        // Funciones para manejar los modales
+        function openCreateModal(type) {
+            currentEntityType = type;
+            if (type === 'user') {
+                userModalTitle.textContent = 'Crear usuario';
+                userForm.reset();
+                userModal.style.display = 'flex';
+            } else if (type === 'menu') {
+                menuModalTitle.textContent = 'Crear Menú';
+                menuForm.reset();
+                menuModal.style.display = 'flex';
+            } else if (type === 'role') {
+                roleModalTitle.textContent = 'Crear Rol';
+                roleForm.reset();
+                roleModal.style.display = 'flex';
+            } else if (type === 'permission') {
+                permissionModalTitle.textContent = 'Crear Permiso';
+                permissionForm.reset();
+                populateModalOptions('permission');
+                permissionModal.style.display = 'flex';
+            }
+            currentEntityId = null;
+        }
+
+        function openEditModal(id, type) {
+            currentEntityId = id;
+            currentEntityType = type;
+            if (type === 'user') {
+                userModalTitle.textContent = 'Editar usuario';
+                const user = usersData.find(u => u.id == id);
+                if (user) {
+                    document.getElementById('doc').value = user.doc;
+                    document.getElementById('name').value = user.name;
+                    document.getElementById('first_surname').value = user.first_surname;
+                    document.getElementById('second_surname').value = user.second_surname;
+                    document.querySelectorAll('input[name="role"]').forEach(checkbox => {
+                        checkbox.checked = user.roles.includes(checkbox.value);
+                    });
+                    userModal.style.display = 'flex';
+                }
+            } else if (type === 'menu') {
+                menuModalTitle.textContent = 'Editar Menú';
+                const menu = menusData.find(m => m.id == id);
+                if (menu) {
+                    document.getElementById('menu-name').value = menu.name;
+                    document.getElementById('menu-section').value = menu.section;
+                    document.getElementById('menu-status').value = menu.status;
+                    menuModal.style.display = 'flex';
+                }
+            } else if (type === 'role') {
+                roleModalTitle.textContent = 'Editar Rol';
+                const role = rolesData.find(r => r.id == id);
+                if (role) {
+                    document.getElementById('role-name').value = role.name;
+                    document.getElementById('role-level').value = role.level;
+                    document.getElementById('role-status').value = role.status;
+                    roleModal.style.display = 'flex';
+                }
+            } else if (type === 'permission') {
+                permissionModalTitle.textContent = 'Editar Permiso';
+                const permission = permissionsData.find(p => p.id == id);
+                if (permission) {
+                    populateModalOptions('permission');
+                    document.getElementById('permission-role').value = permission.role;
+                    document.getElementById('permission-module').value = permission.module;
+                    document.querySelectorAll('input[name="action"]').forEach(checkbox => {
+                        checkbox.checked = permission.actions.includes(checkbox.value);
+                    });
+                    permissionModal.style.display = 'flex';
+                }
+            } else if (type === 'establishment') {
+               // establishmentModalTitle.textContent = 'Editar Establecimiento';
+                //const establishment = centersData.find(e => e.id == id);
+                establishmentFormModal.style.display = 'flex';
+                // if (establishment) {
+                //     // document.getElementById('establishment-name').value = establishment.name;
+                //     // document.getElementById('establishment-snis').value = establishment.snis;
+                //     // document.getElementById('establishment-municipality').value = establishment.municipality;
+                //     // document.getElementById('establishment-status').value = establishment.status;
+                //     // establishmentModal.style.display = 'flex';
+                //     establishmentFormModal.style.display = 'flex';
+                // }
+            }
+        }
+
+        function openDeleteModal(id, type) {
+            currentEntityId = id;
+            currentEntityType = type;
+            const entity = type === 'user' ? usersData.find(u => u.id == id) : 
+                           type === 'menu' ? menusData.find(m => m.id == id) :
+                           type === 'role' ? rolesData.find(r => r.id == id) :
+                           permissionsData.find(p => p.id == id);
+            if (entity) {
+                const message = type === 'user' ? `El usuario ${entity.name} se dará de baja.` :
+                                type === 'menu' ? `El menú "${entity.name}" se eliminará.` :
+                                type === 'role' ? `El rol "${entity.name}" se eliminará.` :
+                                `El permiso para ${entity.role} en ${entity.module} se eliminará.`;
+                document.getElementById('delete-message').textContent = message;
+                deleteModal.style.display = 'flex';
+            }
+        }
+
+        function closeModal(modalElement) {
+            modalElement.style.display = 'none';
+        }
+
+        function attachActionListeners() {
+            document.querySelectorAll('.edit-icon').forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    const id = e.target.closest('tr').dataset.id;
+                    const type = e.target.dataset.type;
+                    openEditModal(id, type);
+                });
+            });
+            document.querySelectorAll('.delete-icon').forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    const id = e.target.closest('tr').dataset.id;
+                    const type = e.target.dataset.type;
+                    openDeleteModal(id, type);
+                });
+            });
+        }
+        
+        // Manejadores de eventos
+        // document.getElementById('loginForm').addEventListener('submit', function(event) {
+        //     event.preventDefault();
+            
+        //     loginPage.style.display = 'none';
+        //     homePage.style.display = 'flex';
+        //     pageTitle.textContent = 'GIS WEB - Dashboard';
+        //     renderDashboard();
+        // });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                switch(item.id) {
+                    case 'dashboard-nav':
+                        renderDashboard();
+                        break;
+                    case 'users-nav':
+                        renderUsersTable();
+                        break;
+                    case 'menus-nav':
+                        renderMenusTable();
+                        break;
+                    case 'roles-nav':
+                        renderRolesTable();
+                        break;
+                    case 'permissions-nav':
+                        renderPermissionsTable();
+                        break;
+                    case 'establecimientos-nav':
+                        renderEstablecimientosTable();
+                        break;
+                    default:
+                        headerTitle.textContent = item.textContent.trim();
+                        newEntityButton.style.display = 'none';
+                        contentContainer.innerHTML = `<h2>Contenido de ${item.textContent.trim()}</h2>`;
+                        break;
+                }
+            });
+        });
+
+        // Evento para el botón "nuevo"
+        newEntityButton.addEventListener('click', () => {
+            if (document.getElementById('users-nav').classList.contains('active')) {
+                openCreateModal('user');
+            } else if (document.getElementById('menus-nav').classList.contains('active')) {
+                openCreateModal('menu');
+            } else if (document.getElementById('roles-nav').classList.contains('active')) {
+                openCreateModal('role');
+            } else if (document.getElementById('permissions-nav').classList.contains('active')) {
+                openCreateModal('permission');
+            }
+        });
+
+        // Eventos para los modales
+        document.querySelectorAll('.modal-close, .cancel-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                closeModal(e.target.closest('.modal'));
+            });
+        });
+        
+        userForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(userForm);
+            const user = Object.fromEntries(formData.entries());
+            user.roles = formData.getAll('role');
+            user.first_surname = user.first_surname || '';
+            user.second_surname = user.second_surname || '';
+
+            if (currentEntityId) {
+                // Actualizar usuario
+                usersData = usersData.map(u => u.id == currentEntityId ? { ...u, ...user } : u);
+            } else {
+                // Crear nuevo usuario
+                const newId = Math.max(...usersData.map(u => u.id)) + 1;
+                usersData.push({ ...user, id: newId, status: 'activo' });
+            }
+            
+            closeModal(userModal);
+            renderUsersTable();
+            console.log('Datos del usuario guardados:', user);
+        });
+
+        menuForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(menuForm);
+            const menu = Object.fromEntries(formData.entries());
+
+            if (currentEntityId) {
+                // Actualizar menú
+                menusData = menusData.map(m => m.id == currentEntityId ? { ...m, ...menu } : m);
+            } else {
+                // Crear nuevo menú
+                const newId = Math.max(...menusData.map(m => m.id)) + 1;
+                menusData.push({ ...menu, id: newId });
+            }
+            
+            closeModal(menuModal);
+            renderMenusTable();
+            console.log('Datos del menú guardados:', menu);
+        });
+        
+        roleForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(roleForm);
+            const role = Object.fromEntries(formData.entries());
+            
+            if (currentEntityId) {
+                // Actualizar rol
+                rolesData = rolesData.map(r => r.id == currentEntityId ? { ...r, ...role } : r);
+            } else {
+                // Crear nuevo rol
+                const newId = Math.max(...rolesData.map(r => r.id)) + 1;
+                rolesData.push({ ...role, id: newId });
+            }
+            
+            closeModal(roleModal);
+            renderRolesTable();
+            console.log('Datos del rol guardados:', role);
+        });
+        
+        permissionForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(permissionForm);
+            const permission = Object.fromEntries(formData.entries());
+            permission.actions = formData.getAll('action');
+
+            if (currentEntityId) {
+                // Actualizar permiso
+                permissionsData = permissionsData.map(p => p.id == currentEntityId ? { ...p, ...permission } : p);
+            } else {
+                // Crear nuevo permiso
+                const newId = Math.max(...permissionsData.map(p => p.id)) + 1;
+                permissionsData.push({ ...permission, id: newId });
+            }
+            
+            closeModal(permissionModal);
+            renderPermissionsTable();
+            console.log('Datos del permiso guardados:', permission);
+        });
+
+        document.querySelector('#establishment-form-modal .modal-close-form').addEventListener('click', () => {
+            establishmentFormModal.style.display = 'none';
+        });
+
+        document.querySelector('#delete-modal .delete-btn').addEventListener('click', () => {
+            if (currentEntityType === 'user') {
+                usersData = usersData.filter(u => u.id != currentEntityId);
+                renderUsersTable();
+            } else if (currentEntityType === 'menu') {
+                menusData = menusData.filter(m => m.id != currentEntityId);
+                renderMenusTable();
+            } else if (currentEntityType === 'role') {
+                rolesData = rolesData.filter(r => r.id != currentEntityId);
+                renderRolesTable();
+            } else if (currentEntityType === 'permission') {
+                permissionsData = permissionsData.filter(p => p.id != currentEntityId);
+                renderPermissionsTable();
+            }
+            closeModal(deleteModal);
+            console.log(`Entidad con ID ${currentEntityId} y tipo ${currentEntityType} eliminada.`);
+        });
+        renderDashboard();
+        // Inicializa la página de login al cargar
+        // loginPage.style.display = 'flex';
+    </script>
+</body>
+</html>
