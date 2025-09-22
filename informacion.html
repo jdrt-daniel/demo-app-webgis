@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,11 +25,13 @@
             --header-border: #ddd;
             --content-bg: #fff;
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Roboto', sans-serif;
             color: var(--primary-text);
@@ -38,15 +41,17 @@
             align-items: center;
             min-height: 100vh;
         }
+
         .login-container {
             width: 100%;
             max-width: 25rem;
             padding: 2rem;
             background-color: #fff;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
         .role-selection-container {
             display: none;
             flex-direction: column;
@@ -56,8 +61,9 @@
             padding: 2rem;
             background-color: #fff;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .role-option {
             padding: 1rem;
             border: 1px solid var(--border-color);
@@ -65,20 +71,24 @@
             cursor: pointer;
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
+
         .role-option:hover {
             background-color: #f0f0f0;
             border-color: #000;
         }
+
         .main-container {
             display: flex;
             width: 100%;
             height: 100vh;
         }
+
         .dashboard-container {
             display: flex;
             width: 100%;
             height: 100%;
         }
+
         .sidebar {
             width: 250px;
             background-color: var(--sidebar-bg);
@@ -87,6 +97,7 @@
             flex-direction: column;
             border-right: 1px solid var(--header-border);
         }
+
         .sidebar-header {
             display: flex;
             align-items: center;
@@ -95,13 +106,16 @@
             border-bottom: 1px solid var(--header-border);
             margin-bottom: 1rem;
         }
+
         .sidebar-header .user-name {
             font-weight: 500;
             color: var(--sidebar-text);
         }
+
         .sidebar-nav {
             list-style: none;
         }
+
         .sidebar-nav-item {
             display: flex;
             align-items: center;
@@ -112,237 +126,254 @@
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
+
         .sidebar-nav-item i {
             width: 24px;
             margin-right: 0.75rem;
         }
+
         .sidebar-nav-item.active,
         .sidebar-nav-item:hover {
             background-color: #e0e0e0;
             color: var(--primary-text);
         }
+
         .main-content {
-            flex-grow: 1;
+            flex: 1;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+            background-color: #f8f9fa;
         }
+
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            background-color: var(--header-bg);
-            border-bottom: 1px solid var(--header-border);
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .header-title {
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-        .search-bar {
-            width: 300px;
-            position: relative;
-        }
-        .search-bar input {
-            width: 100%;
-            padding: 0.5rem 2.5rem 0.5rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.25rem;
-            font-size: 1rem;
-        }
-        .search-bar i {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--secondary-text);
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .header-button {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.25rem;
-            background-color: transparent;
-            cursor: pointer;
-        }
-        .header-button.new-user {
-            background-color: #007bff;
-            color: #fff;
-            border-color: #007bff;
-        }
-        .dashboard-content {
-            flex-grow: 1;
-            background-color: var(--content-bg);
-            padding: 2rem;
-        }
-        /* Table Styles */
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            border: 1px solid var(--border-color);
-            border-radius: 0.25rem;
-        }
-        .content-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .content-table th,
-        .content-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .content-table th {
-            font-weight: 500;
-            color: var(--secondary-text);
-            white-space: nowrap;
-        }
-        .content-table th .sort-icon {
-            margin-left: 0.5rem;
-            color: #999;
-        }
-        .content-table tbody tr:hover {
-            background-color: #fafafa;
-        }
-        .action-icons i {
-            cursor: pointer;
-            color: var(--secondary-text);
-            transition: color 0.2s ease;
-        }
-        .action-icons i:hover {
-            color: var(--primary-text);
-        }
-        /* Filter Styles */
-        .filters-container {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        .filter-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.25rem;
-            background-color: var(--input-bg);
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M7 7L10 10L13 7' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.5rem center;
-            padding-right: 2.5rem;
-        }
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .modal-header {
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-header h2 {
-            font-size: 1.25rem;
-            font-weight: 500;
-        }
-        .modal-close {
-            color: #aaa;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .detail-item {
-            margin-bottom: 0.75rem;
-        }
-        .detail-item strong {
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-        .detail-item ul {
-            list-style: none;
-            padding-left: 1rem;
-        }
-        .detail-item ul li {
-            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Map Styles */
-        .map-container {
-            width: 100%;
-            height: 80vh;
-            position: relative;
-            background-image: url('https://placehold.co/1000x800/d3d3d3/ffffff?text=MAPA+DE+COCHABAMBA');
-            background-size: cover;
-            background-position: center;
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0 0 0.25rem 0;
+            color: white;
         }
-        .map-point {
-            width: 20px;
-            height: 20px;
-            background-color: #4CAF50;
-            border-radius: 50%;
-            border: 2px solid #fff;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
-            position: absolute;
-            cursor: pointer;
-        }
-        .map-point.clicked {
-            background-color: #FF5722;
-        }
-        .popup {
-            position: absolute;
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            font-size: 0.9rem;
-            min-width: 200px;
-        }
-        .popup h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-        .popup p {
+
+        .header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
             margin: 0;
         }
-        .popup-link {
-            color: #007bff;
-            text-decoration: underline;
-            cursor: pointer;
-            margin-top: 5px;
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
         }
 
-        /* Detail View Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #303f9f;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            color: #3f51b5;
+            padding: 0.5rem 1rem;
+        }
+
+        .btn-text:hover {
+            background-color: rgba(63, 81, 181, 0.1);
+        }
+
+        .center-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid #e0e0e0;
+        }
+
+        .center-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .center-header {
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+            color: white;
+            position: relative;
+        }
+
+        .center-header h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .center-level {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .center-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #616161;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .info-value {
+            color: #212121;
+            flex: 1;
+        }
+
+        .info-value a {
+            color: #3f51b5;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .info-value a:hover {
+            text-decoration: underline;
+            color: #303f9f;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 1.25rem 0;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #424242;
+            margin: 1rem 0 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: #3f51b5;
+        }
+
+        .services-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .service-item {
+            background-color: #f8f9fa;
+            border-left: 3px solid #3f51b5;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0 4px 4px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-item:hover {
+            transform: translateX(3px);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: #3f51b5;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-schedule {
+            font-size: 0.85rem;
+            color: #616161;
+            margin-top: 0.25rem;
+        }
+
+        .ambulance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .ambulance-available {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .ambulance-unavailable {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
         .detail-view {
             padding: 2rem;
             display: flex;
@@ -350,14 +381,16 @@
             gap: 1.5rem;
             background-color: #f9f9f9;
             border-radius: 0.5rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .detail-section {
             background-color: #fff;
             padding: 1.5rem;
             border-radius: 0.5rem;
             border: 1px solid #eee;
         }
+
         .detail-section h3 {
             font-size: 1.25rem;
             font-weight: 500;
@@ -365,24 +398,29 @@
             border-bottom: 1px solid #ccc;
             padding-bottom: 0.5rem;
         }
+
         .detail-item-group {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
         }
+
         .detail-item-group p {
             flex: 1 1 45%;
             margin: 0;
             line-height: 1.5;
         }
+
         .detail-item-group ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
+
         .detail-item-group ul li {
             margin-bottom: 0.25rem;
         }
+
         .back-button {
             margin-bottom: 1rem;
             padding: 0.5rem 1rem;
@@ -410,7 +448,7 @@
             transform: translate(-50%, -50%);
             border: 2px solid;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .ring-30 {
@@ -418,11 +456,13 @@
             height: 90%;
             border-color: rgba(255, 0, 0, 0.5);
         }
+
         .ring-20 {
             width: 60%;
             height: 60%;
             border-color: rgba(255, 165, 0, 0.6);
         }
+
         .ring-10 {
             width: 30%;
             height: 30%;
@@ -433,24 +473,30 @@
             .main-container {
                 flex-direction: column;
             }
+
             .sidebar {
                 width: 100%;
                 padding: 1rem;
                 border-right: none;
                 border-bottom: 1px solid var(--header-border);
             }
+
             .header {
                 flex-direction: column;
                 gap: 1rem;
                 padding: 1rem;
             }
-            .header-left, .header-right {
+
+            .header-left,
+            .header-right {
                 width: 100%;
                 justify-content: space-between;
             }
+
             .search-bar {
                 width: 100%;
             }
+
             .content-table th,
             .content-table td {
                 padding: 0.75rem;
@@ -458,628 +504,252 @@
         }
     </style>
 </head>
+
 <body>
-    <!-- Página de Selección de Rol -->
-    <!-- <div id="role-selection-page" class="role-selection-container">
-        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Seleccione su Rol</h2>
-        <div class="role-option" data-role="ADMIN">ADMIN</div>
-        <div class="role-option" data-role="PERSONAL DE SALUD">PERSONAL DE SALUD</div>
-        <div class="role-option" data-role="TÉCNICO">TÉCNICO</div>
-    </div> -->
-    
-    <!-- Página Principal -->
+
     <div id="home-page" class="main-container">
         <div class="dashboard-container">
-            <!-- <aside class="sidebar">
-                <div class="sidebar-header">
-                    <i class="fas fa-user-circle"></i>
-                    <span class="user-name">Roberto Lopez</span>
-                </div>
-                <ul class="sidebar-nav">
-                    <li id="tables-nav" class="sidebar-nav-item active">
-                        <i class="fas fa-table"></i>
-                        Tablas
-                    </li>
-                    <li id="maps-nav" class="sidebar-nav-item">
-                        <i class="fas fa-map"></i>
-                        Mapa
-                    </li>
-                    <li id="report1-nav" class="sidebar-nav-item">
-                        <i class="fas fa-file-alt"></i>
-                        Reporte 01
-                    </li>
-                    <li id="report2-nav" class="sidebar-nav-item">
-                        <i class="fas fa-file-alt"></i>
-                        Reporte 02
-                    </li>
-                </ul>
-            </aside> -->
             <main class="main-content">
-                <header class="header">
+                <!-- <header class="header">
                     <div class="header-left">
-                        <h1 id="header-title" class="header-title">Tablas</h1>
+                        <h1 id="header-title">Centro de Salud</h1>
+                        <p class="subtitle">Información detallada de un establecimiento de salud</p>
                     </div>
-                    <!-- <div class="header-right">
-                        <button class="header-button">Notificacion</button>
-                        <button class="header-button">Perfil</button>
-                    </div> -->
-                </header>
-                <div id="content-container" class="dashboard-content">
-                    <!-- El contenido de las páginas se renderizará aquí -->
+                    <div class="header-actions">
+                        <button id="logout-btn" class="btn btn-outline">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        </button>
+                    </div>
+                </header> -->
+
+                <div class="content">
+                    <div id="centers-list" class="centers-container">
+                        <!-- El centro de salud se cargará aquí dinámicamente -->
+                    </div>
                 </div>
             </main>
         </div>
     </div>
-    
-    <!-- Modal de Ver Detalle -->
-    <div id="detail-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="detail-modal-title"></h2>
-                <span class="modal-close">&times;</span>
-            </div>
-            <div id="detail-content"></div>
-        </div>
-    </div>
 
     <script>
-        const roleSelectionPage = document.getElementById('role-selection-page');
-        const homePage = document.getElementById('home-page');
-        const headerTitle = document.getElementById('header-title');
-        const navItems = document.querySelectorAll('.sidebar-nav-item');
-        const contentContainer = document.getElementById('content-container');
-        const detailModal = document.getElementById('detail-modal');
-        const detailModalTitle = document.getElementById('detail-modal-title');
-        const detailContent = document.getElementById('detail-content');
-
-        // Datos de ejemplo con terminología técnica
-        const centersData = [
+        // Datos de los centros de salud
+        const data = [
             {
-                id: 1,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Hospital General Dr. Juan Pereda',
-                municipality: 'Cochabamba',
-                status: 'activo',
-                address: 'Av. Heroínas esq. Ayacucho',
-                phone: '445-6789',
-                coords: { top: '35%', left: '20%' },
-                infrastructure: { beds: 50, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 10, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 3, inService: 2, inRepair: 1 },
-                humanResources: { doctors: 25, nurses: 30, anesthesiologists: 'Sí', birthAttendants: 'No' },
-                details: {
-                    level: 'Tercer Nivel',
-                    hours: '24/7',
-                    services: ['Emergencia', 'Pediatría', 'Cirugía General', 'Cardiología'],
-                    email: 'hgp.cocha@salud.gob.bo',
+                "id": 1,
+                "snis": "N/A",
+                "nombre_establecimiento": "C.S.C.I.TAPACARI",
+                "nivel": "1er NIVEL",
+                "direccion": "AL FRENTE DEL INTERNADO MONSEÑOR ANGEL GELMI.",
+                "contacto_celular": "71769381",
+                "servicios": {
+                    "consulta_externa": {
+                        "disponibilidad": "Horario: 08:00 A 12:00 de 14:00 a 16:00 Lunes a Domingo"
+                    },
+                    "emergencia": {
+                        "disponibilidad": "Se atiende emergencia 24/7 después de 6 horas."
+                    },
+                    "internacion": {
+                        "disponibilidad": "Las internaciones son transitorias (6 a 8 hrs.)."
+                    },
+                    "servicios_adicionales": [
+                        {
+                            "nombre": "Odontología Ambulatoria",
+                            "horario": "8:00 a 12:00 y 14:00 a 16:00 de lunes a viernes"
+                        },
+                        {
+                            "nombre": "Farmacia",
+                            "horario": "8:00 a 12:00 y 14:00 a 16:00 de lunes a viernes"
+                        },
+                        {
+                            "nombre": "Laboratorio Basico",
+                            "horario": "8:00 a 12:00 y 14:00 a 16:00 de lunes a viernes"
+                        },
+                        {
+                            "nombre": "Telemedicina",
+                            "horario": "8:00 a 12:00 y 14:00 a 16:00 de lunes a viernes"
+                        }
+                    ]
                 },
-                isochrones: {
-                    times: ['10 min', '20 min', '30 min'],
-                    colors: ['#008000', '#FFA500', '#FF0000']
-                }
-            },
-            {
-                id: 2,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Puesto de Salud de Villa Tunari',
-                municipality: 'Villa Tunari',
-                status: 'activo',
-                address: 'Calle Principal',
-                phone: '478-1234',
-                coords: { top: '60%', left: '70%' },
-                infrastructure: { beds: 5, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
-                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
-                humanResources: { doctors: 2, nurses: 4, anesthesiologists: 'No', birthAttendants: 'No' },
-                details: {
-                    level: 'Primer Nivel',
-                    hours: '8:00 - 16:00',
-                    services: ['Medicina General', 'Vacunación', 'Atención Primaria'],
-                    email: 'psvillatunari@salud.gob.bo',
-                },
-                isochrones: {
-                    times: ['10 min', '20 min', '30 min'],
-                    colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                "numero_camas": 6,
+                "ambulancias_disponibles": true
             },
             {
-                id: 3,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Centro de Salud de Sacaba',
-                municipality: 'Sacaba',
-                status: 'inactivo',
-                address: 'Plaza Principal s/n',
-                phone: '456-7890',
-                coords: { top: '40%', left: '45%' },
-                infrastructure: { beds: 20, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 4, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
-                humanResources: { doctors: 10, nurses: 15, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
-                details: {
-                    level: 'Segundo Nivel',
-                    hours: '24/7',
-                    services: ['Emergencia', 'Laboratorio', 'Rayos X'],
-                    email: 'cssacaba@salud.gob.bo',
+                "id": 2,
+                "snis": "N/A",
+                "nombre_establecimiento": "P.S. JATUN PAMPA",
+                "nivel": "1er NIVEL",
+                "direccion": "AL LADO DE UN PARQUE INFANTIL.",
+                "contacto_celular": "67573493",
+                "servicios": {
+                    "consulta_externa": {
+                        "disponibilidad": "No"
+                    },
+                    "emergencia": {
+                        "disponibilidad": "Se atiende emergencia 24/7 después de 6 horas."
+                    },
+                    "internacion": {
+                        "disponibilidad": "No"
+                    },
+                    "servicios_adicionales": []
                 },
-                isochrones: {
-                    times: ['10 min', '20 min', '30 min'],
-                    colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                "numero_camas": 1,
+                "ambulancias_disponibles": false
             },
             {
-                id: 4,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Hospital del Sur',
-                municipality: 'Cercado',
-                status: 'activo',
-                address: 'Av. Petrolera',
-                phone: '423-9876',
-                coords: { top: '55%', left: '30%' },
-                infrastructure: { beds: 40, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 15, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 4, inService: 3, inRepair: 1 },
-                humanResources: { doctors: 30, nurses: 40, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
-                details: {
-                    level: 'Tercer Nivel',
-                    hours: '24/7',
-                    services: ['Cirugía', 'Urgencias', 'Medicina Interna', 'Ginecología'],
-                    email: 'hsur@salud.gob.bo',
+                "id": 3,
+                "snis": "N/A",
+                "nombre_establecimiento": "C.S.C.I.WACA PLAYA",
+                "nivel": "1er NIVEL",
+                "direccion": "AL LADO DEL MERCADO REGIONAL WACA PLAYA",
+                "contacto_celular": "74813755",
+                "servicios": {
+                    "consulta_externa": {
+                        "disponibilidad": "Horario: 08:00 A 12:00 de 14:00 A 16:00 Lunes a Domingo."
+                    },
+                    "emergencia": {
+                        "disponibilidad": "Se atiende emergencia 24/7 después de 6 horas."
+                    },
+                    "internacion": {
+                        "disponibilidad": "Las internaciones son transitorias (6 a 8 hrs.)."
+                    },
+                    "servicios_adicionales": [
+                        {
+                            "nombre": "Odontología Ambulatoria",
+                            "horario": "8:00 a 12:00 y 14:00 a 16:00 de lunes a domingo"
+                        }
+                    ]
                 },
-                isochrones: {
-                    times: ['10 min', '20 min', '30 min'],
-                    colors: ['#008000', '#FFA500', '#FF0000']
-                }
-            },
-             {
-                id: 5,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Hospital de Tarata',
-                municipality: 'Tarata',
-                status: 'activo',
-                address: 'Plaza Principal s/n',
-                phone: '422-5566',
-                coords: { top: '25%', left: '60%' },
-                infrastructure: { beds: 15, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 5, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'No', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
-                humanResources: { doctors: 8, nurses: 10, anesthesiologists: 'No', birthAttendants: 'Sí' },
-                details: {
-                    level: 'Segundo Nivel',
-                    hours: '24/7',
-                    services: ['Emergencia', 'Odontología', 'Laboratorio Clínico'],
-                    email: 'htaratamuni@salud.gob.bo',
-                },
-                isochrones: {
-                    times: ['10 min', '20 min', '30 min'],
-                    colors: ['#008000', '#FFA500', '#FF0000']
-                }
-            },
-             {
-                id: 6,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Puesto de Salud Quillacollo',
-                municipality: 'Quillacollo',
-                status: 'inactivo',
-                address: 'Calle Final',
-                phone: '433-2211',
-                coords: { top: '70%', left: '50%' },
-                infrastructure: { beds: 8, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'No' },
-                equipment: { vitalSignsMonitor: 2, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
-                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
-                humanResources: { doctors: 5, nurses: 6, anesthesiologists: 'Sí', birthAttendants: 'No' },
-                details: {
-                    level: 'Primer Nivel',
-                    hours: '8:00 - 16:00',
-                    services: ['Atención Primaria', 'Vacunación'],
-                    email: 'psquillacollo@salud.gob.bo',
-                },
-                isochrones: {
-                    times: ['10 min', '20 min', '30 min'],
-                    colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                "numero_camas": 2,
+                "ambulancias_disponibles": true
             }
         ];
-        
-        let currentRole = null;
 
-        function renderTablesContent(data = centersData) {
-            headerTitle.textContent = 'Tablas';
-            
-            const filtersHtml = `
-                <div class="filters-container">
-                    <select id="filter-infrastructure" class="filter-select">
-                        <option value="">INFRAESTRUCTURA</option>
-                        <option value="beds-gt-20">Más de 20 Camas</option>
-                        <option value="operatingRooms-yes">Con Sala de Operaciones</option>
-                        <option value="deliveryRooms-yes">Con Sala de Partos</option>
-                        <option value="anesthesiologyRoom-yes">Con Sala de Anestesiología</option>
-                        <option value="vaccinationRoom-yes">Con Vacunatorio</option>
-                    </select>
-                    <select id="filter-equipment" class="filter-select">
-                        <option value="">EQUIPAMIENTO</option>
-                        <option value="xRay-yes">Con Equipo de Rayos X</option>
-                        <option value="artificialRespirator-yes">Con Respirador Artificial</option>
-                        <option value="cardiograph-yes">Con Cardiógrafo</option>
-                        <option value="ophthalmoscope-yes">Con Oftalmoscopio</option>
-                    </select>
-                    <select id="filter-human-resources" class="filter-select">
-                        <option value="">RECURSO HUMANO</option>
-                        <option value="doctors-gt-10">Más de 10 Médicos Generales</option>
-                        <option value="anesthesiologists-yes">Con Anestesiólogos</option>
-                        <option value="birthAttendants-yes">Con Partólogos</option>
-                    </select>
-                    <select id="filter-vehicles" class="filter-select">
-                        <option value="">VEHÍCULOS</option>
-                        <option value="ambulances-gt-1">Más de 1 Ambulancia</option>
-                    </select>
-                </div>
-            `;
-            
-            const tableHtml = `
-                <div class="table-container">
-                    <table class="content-table">
-                        <thead>
-                            <tr>
-                                <th>CÓDIGO SNIS</th>
-                                <th>ESTABLECIMIENTO</th>
-                                <th>MUNICIPIO</th>
-                                <th>ESTADO</th>
-                                <th>DIRECCIÓN</th>
-                                <th>TELÉFONO</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${data.map(center => `
-                                <tr data-id="${center.id}">
-                                    <td>${center.snis.slice(0, 2) + center.snis.slice(-4)}</td>
-                                    <td>${center.establishment}</td>
-                                    <td>${center.municipality}</td>
-                                    <td>${center.status === 'activo' ? 'Activo' : 'Inactivo'}</td>
-                                    <td>${center.address}</td>
-                                    <td>${center.phone}</td>
-                                    <td>
-                                        <div class="action-icons">
-                                            <i class="fas fa-eye view-detail-icon"></i>
+        // Elementos del DOM
+        const centersList = document.getElementById('centers-list');
+
+        // Mostrar la página principal
+        document.addEventListener('DOMContentLoaded', () => {
+            displayRandomCenter();
+        });
+
+        // Función para formatear el número de teléfono
+        function formatPhoneNumber(phone) {
+            if (!phone) return 'No disponible';
+            const cleaned = ('' + phone).replace(/\D/g, '');
+            const match = cleaned.match(/^(\d{2})(\d{3})(\d{4})$/);
+            return match ? `+591 ${match[1]} ${match[2]}-${match[3]}` : phone;
+        }
+
+        // Función para crear el HTML de un centro de salud
+        function createCenterCard(center) {
+            const hasEmergency = center.servicios.emergencia &&
+                center.servicios.emergencia.disponibilidad.toLowerCase() !== 'no';
+            const hasConsultation = center.servicios.consulta_externa &&
+                center.servicios.consulta_externa.disponibilidad.toLowerCase() !== 'no';
+            const hasHospitalization = center.servicios.internacion &&
+                center.servicios.internacion.disponibilidad.toLowerCase() !== 'no';
+
+            return `
+                <div class="center-card" data-id="${center.id}" 
+                     data-name="${center.nombre_establecimiento.toLowerCase()}"
+                     data-level="${center.nivel}"
+                     data-ambulance="${center.ambulancias_disponibles}">
+                    <div class="center-header">
+                        <h3>${center.nombre_establecimiento}</h3>
+                        <span class="center-level">${center.nivel}</span>
+                    </div>
+                    <div class="center-body">
+                        <div class="info-row">
+                            <span class="info-label"><i class="fas fa-map-marker-alt"></i> Dirección:</span>
+                            <span class="info-value">${center.direccion || 'No especificada'}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label"><i class="fas fa-phone"></i> Contacto:</span>
+                            <span class="info-value">
+                                <a href="tel:${center.contacto_celular}">${formatPhoneNumber(center.contacto_celular)}</a>
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label"><i class="fas fa-procedures"></i> Camas:</span>
+                            <span class="info-value">${center.numero_camas || 'No especificado'}</span>
+                        </div>
+                        
+                        <div class="ambulance-badge ${center.ambulancias_disponibles ? 'ambulance-available' : 'ambulance-unavailable'}">
+                            <i class="fas ${center.ambulancias_disponibles ? 'fa-ambulance' : 'fa-times-circle'}"></i>
+                            ${center.ambulancias_disponibles ? 'Ambulancia disponible' : 'Sin ambulancia'}
+                        </div>
+                        
+                        <div class="divider"></div>
+                        
+                        <h4 class="section-title"><i class="fas fa-clipboard-list"></i> Servicios</h4>
+                        <ul class="services-list">
+                            ${hasConsultation ? `
+                            <li class="service-item">
+                                <div class="service-name">
+                                    <i class="fas fa-stethoscope"></i>
+                                    Consulta Externa
+                                </div>
+                                <div class="service-schedule">
+                                    ${center.servicios.consulta_externa.disponibilidad.replace('Horario:', '').trim() || 'Horario no especificado'}
+                                </div>
+                            </li>` : ''}
+                            
+                            ${hasEmergency ? `
+                            <li class="service-item">
+                                <div class="service-name">
+                                    <i class="fas fa-ambulance"></i>
+                                    Emergencias
+                                </div>
+                                <div class="service-schedule">
+                                    ${center.servicios.emergencia.disponibilidad}
+                                </div>
+                            </li>` : ''}
+                            
+                            ${hasHospitalization ? `
+                            <li class="service-item">
+                                <div class="service-name">
+                                    <i class="fas fa-procedures"></i>
+                                    Internación
+                                </div>
+                                <div class="service-schedule">
+                                    ${center.servicios.internacion.disponibilidad}
+                                </div>
+                            </li>` : ''}
+                            
+                            ${Array.isArray(center.servicios.servicios_adicionales) && center.servicios.servicios_adicionales.length > 0 ?
+                    center.servicios.servicios_adicionales.map(service => `
+                                    <li class="service-item">
+                                        <div class="service-name">
+                                            <i class="fas fa-plus-circle"></i>
+                                            ${service.nombre}
                                         </div>
-                                    </td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-            `;
-            
-            contentContainer.innerHTML = filtersHtml + tableHtml;
-            attachTableListeners();
-        }
-
-        function handleFilters() {
-            const infrastructureFilter = document.getElementById('filter-infrastructure').value;
-            const equipmentFilter = document.getElementById('filter-equipment').value;
-            const humanResourcesFilter = document.getElementById('filter-human-resources').value;
-            const vehiclesFilter = document.getElementById('filter-vehicles').value;
-
-            let filteredData = centersData.filter(center => {
-                let match = true;
-
-                if (infrastructureFilter) {
-                    if (infrastructureFilter === 'beds-gt-20') match = match && center.infrastructure.beds > 20;
-                    if (infrastructureFilter === 'operatingRooms-yes') match = match && center.infrastructure.operatingRooms === 'Sí';
-                    if (infrastructureFilter === 'deliveryRooms-yes') match = match && center.infrastructure.deliveryRooms === 'Sí';
-                    if (infrastructureFilter === 'anesthesiologyRoom-yes') match = match && center.infrastructure.anesthesiologyRoom === 'Sí';
-                    if (infrastructureFilter === 'vaccinationRoom-yes') match = match && center.infrastructure.vaccinationRoom === 'Sí';
+                                        <div class="service-schedule">
+                                            ${service.horario || 'Horario no especificado'}
+                                        </div>
+                                    </li>`
+                    ).join('') : ''
                 }
-                
-                if (equipmentFilter) {
-                    if (equipmentFilter === 'xRay-yes') match = match && center.equipment.xRay === 'Sí';
-                    if (equipmentFilter === 'artificialRespirator-yes') match = match && center.equipment.artificialRespirator === 'Sí';
-                    if (equipmentFilter === 'cardiograph-yes') match = match && center.equipment.cardiograph === 'Sí';
-                    if (equipmentFilter === 'ophthalmoscope-yes') match = match && center.equipment.ophthalmoscope === 'Sí';
-                }
-
-                if (humanResourcesFilter) {
-                    if (humanResourcesFilter === 'doctors-gt-10') match = match && center.humanResources.doctors > 10;
-                    if (humanResourcesFilter === 'anesthesiologists-yes') match = match && center.humanResources.anesthesiologists === 'Sí';
-                    if (humanResourcesFilter === 'birthAttendants-yes') match = match && center.humanResources.birthAttendants === 'Sí';
-                }
-                
-                if (vehiclesFilter) {
-                    if (vehiclesFilter === 'ambulances-gt-1') match = match && center.vehicles.ambulances > 1;
-                }
-
-                return match;
-            });
-            
-            const tbody = document.querySelector('.content-table tbody');
-            tbody.innerHTML = filteredData.map(center => `
-                <tr data-id="${center.id}">
-                    <td>${center.snis}</td>
-                    <td>${center.establishment}</td>
-                    <td>${center.municipality}</td>
-                    <td>${center.status === 'activo' ? 'Activo' : 'Inactivo'}</td>
-                    <td>${center.address}</td>
-                    <td>${center.phone}</td>
-                    <td>
-                        <div class="action-icons">
-                            <i class="fas fa-eye view-detail-icon"></i>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-            
-            attachTableListeners();
-        }
-        
-        function attachTableListeners() {
-            document.querySelectorAll('.view-detail-icon').forEach(icon => {
-                icon.addEventListener('click', (e) => {
-                    const id = e.target.closest('tr').dataset.id;
-                    const center = centersData.find(c => c.id == id);
-                    if (center) {
-                        detailModalTitle.textContent = `Detalle de ${center.establishment}`;
-                        
-                        const detailHtml = `
-                            <div class="detail-item">
-                                <strong>INFRAESTRUCTURA</strong>
-                                <ul>
-                                    <li>Camas: ${center.infrastructure.beds}</li>
-                                    <li>Sala de Operaciones: ${center.infrastructure.operatingRooms}</li>
-                                    <li>Sala de Partos: ${center.infrastructure.deliveryRooms}</li>
-                                    <li>Sala de Anestesiología: ${center.infrastructure.anesthesiologyRoom}</li>
-                                    <li>Vacunatorio: ${center.infrastructure.vaccinationRoom}</li>
-                                </ul>
-                            </div>
-                            <div class="detail-item">
-                                <strong>EQUIPAMIENTO</strong>
-                                <ul>
-                                    <li>Monitor de Signos Vitales: ${center.equipment.vitalSignsMonitor}</li>
-                                    <li>Equipo de Rayos X Digital: ${center.equipment.xRay}</li>
-                                    <li>Respirador Artificial: ${center.equipment.artificialRespirator}</li>
-                                    <li>Cardiógrafo: ${center.equipment.cardiograph}</li>
-                                    <li>Oftalmoscopio: ${center.equipment.ophthalmoscope}</li>
-                                </ul>
-                            </div>
-                            <div class="detail-item">
-                                <strong>RECURSO HUMANO</strong>
-                                <ul>
-                                    <li>Médicos Generales: ${center.humanResources.doctors}</li>
-                                    <li>Enfermeros: ${center.humanResources.nurses}</li>
-                                    <li>Anestesiólogos: ${center.humanResources.anesthesiologists}</li>
-                                    <li>Partólogos: ${center.humanResources.birthAttendants}</li>
-                                </ul>
-                            </div>
-                            <div class="detail-item">
-                                <strong>VEHÍCULOS</strong>
-                                <ul>
-                                    <li>Ambulancias: ${center.vehicles.ambulances}</li>
-                                    <li>En funcionamiento: ${center.vehicles.inService}</li>
-                                    <li>En reparación: ${center.vehicles.inRepair}</li>
-                                </ul>
-                            </div>
-                        `;
-                        
-                        detailContent.innerHTML = detailHtml;
-                        detailModal.style.display = 'flex';
-                    }
-                });
-            });
-
-            document.querySelectorAll('.filter-select').forEach(select => {
-                select.addEventListener('change', handleFilters);
-            });
-        }
-        
-        // Renderizar el mapa con los puntos y popups
-        function renderMapsContent() {
-            headerTitle.textContent = 'Mapas';
-            // const mapHtml = `
-            //     <div class="map-container">
-            //         ${centersData.map(center => `
-            //             <div class="map-point" style="top: ${center.coords.top}; left: ${center.coords.left};" data-id="${center.id}"></div>
-            //         `).join('')}
-            //         <div id="popup-container" class="popup"></div>
-            //     </div>
-            // `;
-
-            const mapHtml = `
-                <iframe src="./mapa/index.html" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            `;
-
-            contentContainer.innerHTML = mapHtml;
-            attachMapListeners();
-        }
-
-        function attachMapListeners() {
-            const popup = document.getElementById('popup-container');
-            let activePoint = null;
-
-            document.querySelectorAll('.map-point').forEach(point => {
-                point.addEventListener('click', (e) => {
-                    const id = e.target.dataset.id;
-                    const center = centersData.find(c => c.id == id);
-
-                    if (activePoint && activePoint !== point) {
-                        activePoint.classList.remove('clicked');
-                    }
-                    point.classList.add('clicked');
-                    activePoint = point;
-
-                    if (center) {
-                        const popupHtml = `
-                            <h4>${center.establishment}</h4>
-                            <p><strong>CÓDIGO SNIS:</strong> ${center.snis.slice(0, 2) + center.snis.slice(-4)}</p>
-                            <p><strong>MUNICIPIO:</strong> ${center.municipality}</p>
-                            <p><strong>DIRECCIÓN:</strong> ${center.address}</p>
-                            <p><strong>TELÉFONO:</strong> ${center.phone}</p>
-                            <a href="#" class="popup-link" data-id="${center.id}">Ver más &rarr;</a>
-                        `;
-                        popup.innerHTML = popupHtml;
-                        popup.style.top = `${e.clientY - contentContainer.getBoundingClientRect().top - 20}px`;
-                        popup.style.left = `${e.clientX - contentContainer.getBoundingClientRect().left + 20}px`;
-                        popup.style.display = 'flex';
-                        
-                        document.querySelector('.popup-link').addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const centerId = e.target.dataset.id;
-                            renderDetailContent(centerId);
-                        });
-                    }
-                });
-            });
-        }
-
-        function renderDetailContent(id) {
-            const center = centersData.find(c => c.id == 2);
-            if (!center) {
-                contentContainer.innerHTML = `<h2>Centro de salud no encontrado.</h2>`;
-                return;
-            }
-
-            headerTitle.textContent = center.establishment;
-            navItems.forEach(i => i.classList.remove('active'));
-
-            const detailViewHtml = `
-                <button class="back-button"><i class="fas fa-arrow-left"></i> Volver al mapa</button>
-                <div class="detail-view">
-                    <div class="detail-section">
-                        <h3>Información General</h3>
-                        <div class="detail-item-group">
-                            <p><strong>CÓDIGO SNIS:</strong> ${center.snis.slice(0, 2) + center.snis.slice(-4)}</p>
-                            <p><strong>Municipio:</strong> ${center.municipality}</p>
-                            <p><strong>Estado:</strong> ${center.status === 'activo' ? 'Activo' : 'Inactivo'}</p>
-                            <p><strong>Nivel:</strong> ${center.details.level}</p>
-                            <p><strong>Horario:</strong> ${center.details.hours}</p>
-                            <p><strong>Dirección:</strong> ${center.address}</p>
-                            <p><strong>Teléfono:</strong> ${center.phone}</p>
-                            <p><strong>Email:</strong> ${center.details.email}</p>
-                        </div>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3>Infraestructura</h3>
-                        <div class="detail-item-group">
-                            <p><strong>Camas:</strong> ${center.infrastructure.beds}</p>
-                            <p><strong>Sala de Operaciones:</strong> ${center.infrastructure.operatingRooms}</p>
-                            <p><strong>Sala de Partos:</strong> ${center.infrastructure.deliveryRooms}</p>
-                            <p><strong>Sala de Anestesiología:</strong> ${center.infrastructure.anesthesiologyRoom}</p>
-                            <p><strong>Vacunatorio:</strong> ${center.infrastructure.vaccinationRoom}</p>
-                        </div>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3>Equipamiento</h3>
-                        <div class="detail-item-group">
-                            <p><strong>Monitor de Signos Vitales:</strong> ${center.equipment.vitalSignsMonitor}</p>
-                            <p><strong>Equipo de Rayos X Digital:</strong> ${center.equipment.xRay}</p>
-                            <p><strong>Respirador Artificial:</strong> ${center.equipment.artificialRespirator}</p>
-                            <p><strong>Cardiógrafo:</strong> ${center.equipment.cardiograph}</p>
-                            <p><strong>Oftalmoscopio:</strong> ${center.equipment.ophthalmoscope}</p>
-                        </div>
-                    </div>
-
-                    <div class="detail-section">
-                        <h3>Recurso Humano</h3>
-                        <div class="detail-item-group">
-                            <p><strong>Médicos Generales:</strong> ${center.humanResources.doctors}</p>
-                            <p><strong>Enfermeros:</strong> ${center.humanResources.nurses}</p>
-                            <p><strong>Anestesiólogos:</strong> ${center.humanResources.anesthesiologists}</p>
-                            <p><strong>Partólogos:</strong> ${center.humanResources.birthAttendants}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h3>Vehículos</h3>
-                        <div class="detail-item-group">
-                            <p><strong>Ambulancias:</strong> ${center.vehicles.ambulances}</p>
-                            <p><strong>En funcionamiento:</strong> ${center.vehicles.inService}</p>
-                            <p><strong>En reparación:</strong> ${center.vehicles.inRepair}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h3>Información Macro</h3>
-                        <div class="isochrones-container">
-                            <div class="isochrone-ring ring-30"></div>
-                            <div class="isochrone-ring ring-20"></div>
-                            <div class="isochrone-ring ring-10"></div>
-                        </div>
-                        <ul style="list-style-type: none; padding: 0; margin-top: 1rem; display: flex; gap: 1rem; justify-content: center;">
-                            <li style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 15px; height: 15px; background-color: #008000; border-radius: 50%;"></div>10 min</li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 15px; height: 15px; background-color: #FFA500; border-radius: 50%;"></div>20 min</li>
-                            <li style="display: flex; align-items: center; gap: 0.5rem;"><div style="width: 15px; height: 15px; background-color: #FF0000; border-radius: 50%;"></div>30 min</li>
                         </ul>
                     </div>
                 </div>
             `;
-            contentContainer.innerHTML = detailViewHtml;
-
-            document.querySelector('.back-button').addEventListener('click', () => {
-                renderMapsContent();
-                document.getElementById('maps-nav').classList.add('active');
-            });
         }
-        
-        // Manejadores de eventos de navegación y modales
-        // document.querySelectorAll('.role-option').forEach(option => {
-        //     option.addEventListener('click', (e) => {
-        //         const selectedRole = e.target.dataset.role;
-        //         if (selectedRole === 'PERSONAL DE SALUD') {
-        //             roleSelectionPage.style.display = 'none';
-        //             homePage.style.display = 'flex';
-        //             document.getElementById('maps-nav').classList.add('active');
-        //             renderMapsContent();
-        //         } else {
-        //             // Simular login y mostrar un mensaje para otros roles
-        //             // Usar un div en lugar de alert()
-        //             const messageBox = document.createElement('div');
-        //             messageBox.textContent = `Has seleccionado el rol: ${selectedRole}. Esta vista no está implementada en esta demo.`;
-        //             messageBox.style.cssText = `
-        //                 position: fixed;
-        //                 top: 50%;
-        //                 left: 50%;
-        //                 transform: translate(-50%, -50%);
-        //                 background-color: #fff;
-        //                 color: #333;
-        //                 padding: 20px;
-        //                 border: 1px solid #ccc;
-        //                 border-radius: 8px;
-        //                 box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        //                 z-index: 9999;
-        //             `;
-        //             document.body.appendChild(messageBox);
-                    
-        //             setTimeout(() => {
-        //                 messageBox.remove();
-        //             }, 3000);
-        //         }
-        //     });
-        // });
 
-        // navItems.forEach(item => {
-        //     item.addEventListener('click', () => {
-        //         navItems.forEach(i => i.classList.remove('active'));
-        //         item.classList.add('active');
-                
-        //         headerTitle.textContent = item.textContent.trim();
-                
-        //         if (item.id === 'tables-nav') {
-        //             renderTablesContent();
-        //         } else if (item.id === 'maps-nav') {
-        //             renderMapsContent();
-        //         } else {
-        //             contentContainer.innerHTML = `<h2>Contenido de ${item.textContent.trim()}</h2>`;
-        //         }
-        //     });
-        // });
-
-        // document.querySelector('#detail-modal .modal-close').addEventListener('click', () => {
-        //             detailModal.style.display = 'none';
-        //         });
-        
-        renderDetailContent(2);
-        // Inicializa la página de selección de rol
-        // roleSelectionPage.style.display = 'flex';
+        // Función para mostrar un centro aleatorio
+        function displayRandomCenter() {
+            if (data && data.length > 0) {
+                const randomIndex = Math.floor(Math.random() * data.length);
+                const randomCenter = data[randomIndex];
+                centersList.innerHTML = createCenterCard(randomCenter);
+            } else {
+                centersList.innerHTML = `
+                    <div class="no-results" style="text-align: center; padding: 3rem; color: #757575;">
+                        <h3>No hay datos de centros de salud para mostrar.</h3>
+                    </div>
+                `;
+            }
+        }
     </script>
 </body>
+
 </html>

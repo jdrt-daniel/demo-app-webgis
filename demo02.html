@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,11 +25,13 @@
             --header-border: #ddd;
             --content-bg: #fff;
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Roboto', sans-serif;
             color: var(--primary-text);
@@ -38,15 +41,17 @@
             align-items: center;
             min-height: 100vh;
         }
+
         .login-container {
             width: 100%;
             max-width: 25rem;
             padding: 2rem;
             background-color: #fff;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
         .role-selection-container {
             display: none;
             flex-direction: column;
@@ -56,8 +61,9 @@
             padding: 2rem;
             background-color: #fff;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .role-option {
             padding: 1rem;
             border: 1px solid var(--border-color);
@@ -65,20 +71,24 @@
             cursor: pointer;
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
+
         .role-option:hover {
             background-color: #f0f0f0;
             border-color: #000;
         }
+
         .main-container {
             display: flex;
             width: 100%;
             height: 100vh;
         }
+
         .dashboard-container {
             display: flex;
             width: 100%;
             height: 100%;
         }
+
         .sidebar {
             width: 250px;
             background-color: var(--sidebar-bg);
@@ -87,6 +97,7 @@
             flex-direction: column;
             border-right: 1px solid var(--header-border);
         }
+
         .sidebar-header {
             display: flex;
             align-items: center;
@@ -95,13 +106,16 @@
             border-bottom: 1px solid var(--header-border);
             margin-bottom: 1rem;
         }
+
         .sidebar-header .user-name {
             font-weight: 500;
             color: var(--sidebar-text);
         }
+
         .sidebar-nav {
             list-style: none;
         }
+
         .sidebar-nav-item {
             display: flex;
             align-items: center;
@@ -112,20 +126,24 @@
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
+
         .sidebar-nav-item i {
             width: 24px;
             margin-right: 0.75rem;
         }
+
         .sidebar-nav-item.active,
         .sidebar-nav-item:hover {
             background-color: #e0e0e0;
             color: var(--primary-text);
         }
+
         .main-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
+
         .header {
             display: flex;
             justify-content: space-between;
@@ -134,19 +152,23 @@
             background-color: var(--header-bg);
             border-bottom: 1px solid var(--header-border);
         }
+
         .header-left {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .header-title {
             font-size: 1.5rem;
             font-weight: 500;
         }
+
         .search-bar {
             width: 300px;
             position: relative;
         }
+
         .search-bar input {
             width: 100%;
             padding: 0.5rem 2.5rem 0.5rem 1rem;
@@ -154,6 +176,7 @@
             border-radius: 0.25rem;
             font-size: 1rem;
         }
+
         .search-bar i {
             position: absolute;
             right: 10px;
@@ -161,11 +184,13 @@
             transform: translateY(-50%);
             color: var(--secondary-text);
         }
+
         .header-right {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
+
         .header-button {
             padding: 0.5rem 1rem;
             border: 1px solid var(--border-color);
@@ -173,16 +198,19 @@
             background-color: transparent;
             cursor: pointer;
         }
+
         .header-button.new-user {
             background-color: #007bff;
             color: #fff;
             border-color: #007bff;
         }
+
         .dashboard-content {
             flex-grow: 1;
             background-color: var(--content-bg);
             padding: 2rem;
         }
+
         /* Table Styles */
         .table-container {
             width: 100%;
@@ -190,36 +218,44 @@
             border: 1px solid var(--border-color);
             border-radius: 0.25rem;
         }
+
         .content-table {
             width: 100%;
             border-collapse: collapse;
         }
+
         .content-table th,
         .content-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
         }
+
         .content-table th {
             font-weight: 500;
             color: var(--secondary-text);
             white-space: nowrap;
         }
+
         .content-table th .sort-icon {
             margin-left: 0.5rem;
             color: #999;
         }
+
         .content-table tbody tr:hover {
             background-color: #fafafa;
         }
+
         .action-icons i {
             cursor: pointer;
             color: var(--secondary-text);
             transition: color 0.2s ease;
         }
+
         .action-icons i:hover {
             color: var(--primary-text);
         }
+
         /* Filter Styles */
         .filters-container {
             display: flex;
@@ -227,7 +263,9 @@
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
+
         .filter-select {
+            min-width: 250px;
             padding: 0.5rem 1rem;
             border: 1px solid var(--border-color);
             border-radius: 0.25rem;
@@ -239,6 +277,7 @@
             background-position: right 0.5rem center;
             padding-right: 2.5rem;
         }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -249,18 +288,20 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0, 0, 0, 0.4);
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
             background-color: #fefefe;
             padding: 2rem;
             border-radius: 0.5rem;
             width: 90%;
             max-width: 600px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .modal-header {
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
@@ -269,27 +310,33 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .modal-header h2 {
             font-size: 1.25rem;
             font-weight: 500;
         }
+
         .modal-close {
             color: #aaa;
             font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
         }
+
         .detail-item {
             margin-bottom: 0.75rem;
         }
+
         .detail-item strong {
             display: block;
             margin-bottom: 0.25rem;
         }
+
         .detail-item ul {
             list-style: none;
             padding-left: 1rem;
         }
+
         .detail-item ul li {
             margin-bottom: 0.25rem;
         }
@@ -303,38 +350,44 @@
             background-size: cover;
             background-position: center;
         }
+
         .map-point {
             width: 20px;
             height: 20px;
             background-color: #4CAF50;
             border-radius: 50%;
             border: 2px solid #fff;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             position: absolute;
             cursor: pointer;
         }
+
         .map-point.clicked {
             background-color: #FF5722;
         }
+
         .popup {
             position: absolute;
             background-color: #fff;
             padding: 10px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             display: none;
             flex-direction: column;
             gap: 5px;
             font-size: 0.9rem;
             min-width: 200px;
         }
+
         .popup h4 {
             font-size: 1rem;
             margin-bottom: 5px;
         }
+
         .popup p {
             margin: 0;
         }
+
         .popup-link {
             color: #007bff;
             text-decoration: underline;
@@ -350,14 +403,16 @@
             gap: 1.5rem;
             background-color: #f9f9f9;
             border-radius: 0.5rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .detail-section {
             background-color: #fff;
             padding: 1.5rem;
             border-radius: 0.5rem;
             border: 1px solid #eee;
         }
+
         .detail-section h3 {
             font-size: 1.25rem;
             font-weight: 500;
@@ -365,24 +420,29 @@
             border-bottom: 1px solid #ccc;
             padding-bottom: 0.5rem;
         }
+
         .detail-item-group {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
         }
+
         .detail-item-group p {
             flex: 1 1 45%;
             margin: 0;
             line-height: 1.5;
         }
+
         .detail-item-group ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
+
         .detail-item-group ul li {
             margin-bottom: 0.25rem;
         }
+
         .back-button {
             margin-bottom: 1rem;
             padding: 0.5rem 1rem;
@@ -410,7 +470,7 @@
             transform: translate(-50%, -50%);
             border: 2px solid;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .ring-30 {
@@ -418,11 +478,13 @@
             height: 90%;
             border-color: rgba(255, 0, 0, 0.5);
         }
+
         .ring-20 {
             width: 60%;
             height: 60%;
             border-color: rgba(255, 165, 0, 0.6);
         }
+
         .ring-10 {
             width: 30%;
             height: 30%;
@@ -433,24 +495,30 @@
             .main-container {
                 flex-direction: column;
             }
+
             .sidebar {
                 width: 100%;
                 padding: 1rem;
                 border-right: none;
                 border-bottom: 1px solid var(--header-border);
             }
+
             .header {
                 flex-direction: column;
                 gap: 1rem;
                 padding: 1rem;
             }
-            .header-left, .header-right {
+
+            .header-left,
+            .header-right {
                 width: 100%;
                 justify-content: space-between;
             }
+
             .search-bar {
                 width: 100%;
             }
+
             .content-table th,
             .content-table td {
                 padding: 0.75rem;
@@ -458,6 +526,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Página de Selección de Rol -->
     <!-- <div id="role-selection-page" class="role-selection-container">
@@ -466,7 +535,7 @@
         <div class="role-option" data-role="PERSONAL DE SALUD">PERSONAL DE SALUD</div>
         <div class="role-option" data-role="TÉCNICO">TÉCNICO</div>
     </div> -->
-    
+
     <!-- Página Principal -->
     <div id="home-page" class="main-container">
         <div class="dashboard-container">
@@ -507,22 +576,25 @@
                 </header>
                 <div id="content-container" class="dashboard-content">
                     <!-- El contenido de las páginas se renderizará aquí -->
-                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                    <div
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
                         <h2>Selecciona una opción</h2>
                         <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                            <button class="header-button" onclick="renderTablesContent()" style="height: 150px; width: 250px; font-size: 1rem; font-weight: 500;">
+                            <button class="header-button" onclick="renderTablesContent()"
+                                style="height: 150px; width: 250px; font-size: 1rem; font-weight: 500;">
                                 <i class="fas fa-table fa-2x" style="margin-bottom: 0.5rem; margin-right: 0.5rem;"></i>
                                 Tablas</button>
-                            <button class="header-button" onclick="renderMapsContent()" style="height: 150px; width: 250px; font-size: 1rem; font-weight: 500;">
+                            <button class="header-button" onclick="renderMapsContent()"
+                                style="height: 150px; width: 250px; font-size: 1rem; font-weight: 500;">
                                 <i class="fas fa-map fa-2x" style="margin-bottom: 0.5rem; margin-right: 0.5rem;"></i>
                                 Mapa</button>
                         </div>
-                     </div>
+                    </div>
                 </div>
             </main>
         </div>
     </div>
-    
+
     <!-- Modal de Ver Detalle -->
     <div id="detail-modal" class="modal">
         <div class="modal-content">
@@ -548,150 +620,480 @@
         const centersData = [
             {
                 id: 1,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Hospital General Dr. Juan Pereda',
-                municipality: 'Cochabamba',
+                snis: '300300',
+                establishment: 'C.S.C.I.TAPACARI',
+                municipality: 'Tapacari',
                 status: 'activo',
-                address: 'Av. Heroínas esq. Ayacucho',
-                phone: '445-6789',
+                address: 'Calle Principal s/n',
+                phone: '450-1234',
                 coords: { top: '35%', left: '20%' },
-                infrastructure: { beds: 50, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 10, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 3, inService: 2, inRepair: 1 },
-                humanResources: { doctors: 25, nurses: 30, anesthesiologists: 'Sí', birthAttendants: 'No' },
+                infrastructure: { beds: 15, operatingRooms: 'No', deliveryRooms: 'Sí', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 3, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 4, nurses: 6, anesthesiologists: 'No', birthAttendants: 'Sí' },
                 details: {
-                    level: 'Tercer Nivel',
+                    level: '2do nivel hospital de vinto',
                     hours: '24/7',
-                    services: ['Emergencia', 'Pediatría', 'Cirugía General', 'Cardiología'],
-                    email: 'hgp.cocha@salud.gob.bo',
+                    services: ['Emergencia', 'Atención Primaria', 'Vacunación'],
+                    email: 'csci.tapacari@salud.gob.bo',
                 },
                 isochrones: {
                     times: ['10 min', '20 min', '30 min'],
                     colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                },
+                populationAssigned: 3300,
             },
             {
                 id: 2,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Puesto de Salud de Villa Tunari',
-                municipality: 'Villa Tunari',
+                snis: '300301',
+                establishment: 'P.S.TUNAS VINTO',
+                municipality: 'Tapacari',
                 status: 'activo',
-                address: 'Calle Principal',
-                phone: '478-1234',
-                coords: { top: '60%', left: '70%' },
+                address: 'Plaza Central s/n',
+                phone: '450-5678',
+                coords: { top: '36%', left: '21%' },
                 infrastructure: { beds: 5, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
                 equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
-                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
-                humanResources: { doctors: 2, nurses: 4, anesthesiologists: 'No', birthAttendants: 'No' },
+                vehicles: { ambulances: 1, inService: 0, inRepair: 1 },
+                humanResources: { doctors: 2, nurses: 3, anesthesiologists: 'No', birthAttendants: 'No' },
                 details: {
-                    level: 'Primer Nivel',
+                    level: '2do nivel hospital de vinto',
                     hours: '8:00 - 16:00',
-                    services: ['Medicina General', 'Vacunación', 'Atención Primaria'],
-                    email: 'psvillatunari@salud.gob.bo',
+                    services: ['Atención Primaria', 'Vacunación'],
+                    email: 'ps.tunasvinto@salud.gob.bo',
                 },
                 isochrones: {
                     times: ['10 min', '20 min', '30 min'],
                     colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                },
+                populationAssigned: 670,
             },
             {
                 id: 3,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Centro de Salud de Sacaba',
-                municipality: 'Sacaba',
-                status: 'inactivo',
-                address: 'Plaza Principal s/n',
-                phone: '456-7890',
-                coords: { top: '40%', left: '45%' },
-                infrastructure: { beds: 20, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 4, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
-                humanResources: { doctors: 10, nurses: 15, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                snis: '300294',
+                establishment: 'P.S.JATUN PAMPA',
+                municipality: 'Tapacari',
+                status: 'activo',
+                address: 'Zona Pampa Verde',
+                phone: '450-9876',
+                coords: { top: '37%', left: '22%' },
+                infrastructure: { beds: 4, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 1, nurses: 2, anesthesiologists: 'No', birthAttendants: 'No' },
                 details: {
-                    level: 'Segundo Nivel',
-                    hours: '24/7',
-                    services: ['Emergencia', 'Laboratorio', 'Rayos X'],
-                    email: 'cssacaba@salud.gob.bo',
+                    level: '2do nivel benigno sanchez',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.jatunpampa@salud.gob.bo',
                 },
                 isochrones: {
                     times: ['10 min', '20 min', '30 min'],
                     colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                },
+                populationAssigned: 917,
             },
             {
                 id: 4,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Hospital del Sur',
-                municipality: 'Cercado',
+                snis: '300295',
+                establishment: 'P.S.JIRONKOTA',
+                municipality: 'Tapacari',
                 status: 'activo',
-                address: 'Av. Petrolera',
-                phone: '423-9876',
-                coords: { top: '55%', left: '30%' },
-                infrastructure: { beds: 40, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 15, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 4, inService: 3, inRepair: 1 },
-                humanResources: { doctors: 30, nurses: 40, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                address: 'Barrio Jironkota',
+                phone: '450-6543',
+                coords: { top: '38%', left: '23%' },
+                infrastructure: { beds: 3, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 0, inService: 0, inRepair: 0 },
+                humanResources: { doctors: 1, nurses: 2, anesthesiologists: 'No', birthAttendants: 'No' },
                 details: {
-                    level: 'Tercer Nivel',
-                    hours: '24/7',
-                    services: ['Cirugía', 'Urgencias', 'Medicina Interna', 'Ginecología'],
-                    email: 'hsur@salud.gob.bo',
+                    level: '2do nivel benigno sanchez',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.jironkota@salud.gob.bo',
                 },
                 isochrones: {
                     times: ['10 min', '20 min', '30 min'],
                     colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                },
+                populationAssigned: 517,
             },
-             {
+            {
                 id: 5,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Hospital de Tarata',
-                municipality: 'Tarata',
+                snis: '300302',
+                establishment: 'C.S.C.I.VILLA PEREIRA',
+                municipality: 'Leque',
                 status: 'activo',
-                address: 'Plaza Principal s/n',
-                phone: '422-5566',
-                coords: { top: '25%', left: '60%' },
-                infrastructure: { beds: 15, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
-                equipment: { vitalSignsMonitor: 5, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'No', ophthalmoscope: 'Sí' },
-                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
-                humanResources: { doctors: 8, nurses: 10, anesthesiologists: 'No', birthAttendants: 'Sí' },
+                address: 'Av. Principal',
+                phone: '460-1122',
+                coords: { top: '40%', left: '30%' },
+                infrastructure: { beds: 20, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 5, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 2, inService: 2, inRepair: 0 },
+                humanResources: { doctors: 8, nurses: 12, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
                 details: {
-                    level: 'Segundo Nivel',
+                    level: '2do nivel benigno sanchez',
                     hours: '24/7',
-                    services: ['Emergencia', 'Odontología', 'Laboratorio Clínico'],
-                    email: 'htaratamuni@salud.gob.bo',
+                    services: ['Emergencia', 'Laboratorio', 'Rayos X'],
+                    email: 'csci.villapereira@salud.gob.bo',
                 },
                 isochrones: {
                     times: ['10 min', '20 min', '30 min'],
                     colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                },
+                populationAssigned: 1823,
             },
-             {
+            {
                 id: 6,
-                snis: '30' + Math.floor(Math.random() * 10000).toString().padStart(4, '0') + Math.floor(Math.random() * 1000).toString().padStart(3, '0').slice(-3),
-                establishment: 'Puesto de Salud Quillacollo',
-                municipality: 'Quillacollo',
-                status: 'inactivo',
-                address: 'Calle Final',
-                phone: '433-2211',
-                coords: { top: '70%', left: '50%' },
-                infrastructure: { beds: 8, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'No' },
-                equipment: { vitalSignsMonitor: 2, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
-                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
-                humanResources: { doctors: 5, nurses: 6, anesthesiologists: 'Sí', birthAttendants: 'No' },
+                snis: '300296',
+                establishment: 'P.S. LEQUE',
+                municipality: 'Leque',
+                status: 'activo',
+                address: 'Plaza del Pueblo s/n',
+                phone: '460-3344',
+                coords: { top: '41%', left: '31%' },
+                infrastructure: { beds: 6, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 2, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 3, nurses: 5, anesthesiologists: 'No', birthAttendants: 'No' },
                 details: {
-                    level: 'Primer Nivel',
+                    level: '2do nivel benigno sanchez',
                     hours: '8:00 - 16:00',
                     services: ['Atención Primaria', 'Vacunación'],
-                    email: 'psquillacollo@salud.gob.bo',
+                    email: 'ps.leque@salud.gob.bo',
                 },
                 isochrones: {
                     times: ['10 min', '20 min', '30 min'],
                     colors: ['#008000', '#FFA500', '#FF0000']
-                }
+                },
+                populationAssigned: 845,
+            },
+            {
+                id: 7,
+                snis: '300290',
+                establishment: 'C.S.C.I.JAPO',
+                municipality: 'Challa',
+                status: 'activo',
+                address: 'Calle Japo s/n',
+                phone: '470-5566',
+                coords: { top: '50%', left: '40%' },
+                infrastructure: { beds: 25, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 6, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 3, inService: 2, inRepair: 1 },
+                humanResources: { doctors: 10, nurses: 15, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                details: {
+                    level: '2do nivel benigno sanchez',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Cirugía', 'Ginecología'],
+                    email: 'csci.japo@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 1769,
+            },
+            {
+                id: 8,
+                snis: '300291',
+                establishment: 'P.S. CHALLA',
+                municipality: 'Challa',
+                status: 'activo',
+                address: 'Av. Challa',
+                phone: '470-7788',
+                coords: { top: '51%', left: '41%' },
+                infrastructure: { beds: 8, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 2, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 2, nurses: 4, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: '2do nivel benigno sanchez',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria', 'Vacunación'],
+                    email: 'ps.challa@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 1288,
+            },
+            {
+                id: 9,
+                snis: '300297',
+                establishment: 'P.S.LLAVINI',
+                municipality: 'Challa',
+                status: 'activo',
+                address: 'Barrio Llavini',
+                phone: '470-9900',
+                coords: { top: '52%', left: '42%' },
+                infrastructure: { beds: 7, operatingRooms: 'No', deliveryRooms: 'Sí', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 2, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 3, nurses: 4, anesthesiologists: 'No', birthAttendants: 'Sí' },
+                details: {
+                    level: '2do nivel hospital de vinto',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria', 'Atención de Parto'],
+                    email: 'ps.llavini@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 852,
+            },
+            {
+                id: 10,
+                snis: '300298',
+                establishment: 'P.S. BOMBO',
+                municipality: 'Challa',
+                status: 'activo',
+                address: 'Comunidad Bombo',
+                phone: '470-1122',
+                coords: { top: '53%', left: '43%' },
+                infrastructure: { beds: 5, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 0, inService: 0, inRepair: 0 },
+                humanResources: { doctors: 1, nurses: 2, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: '2do nivel benigno sanchez',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.bombo@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 646,
+            },
+            {
+                id: 11,
+                snis: '300498',
+                establishment: 'C.S.C.I.PONGO KASA',
+                municipality: 'Challa',
+                status: 'activo',
+                address: 'Zona Pongo Kasa',
+                phone: '470-3344',
+                coords: { top: '54%', left: '44%' },
+                infrastructure: { beds: 22, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 7, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
+                humanResources: { doctors: 9, nurses: 14, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                details: {
+                    level: '2do nivel benigno sanchez',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Laboratorio', 'Odontología'],
+                    email: 'csci.pongokasa@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 2987,
+            },
+            {
+                id: 12,
+                snis: '300530',
+                establishment: 'P.S.HUAYLLAMAYU',
+                municipality: 'Challa',
+                status: 'activo',
+                address: 'Comunidad Huayllamayú',
+                phone: '470-5566',
+                coords: { top: '55%', left: '45%' },
+                infrastructure: { beds: 4, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 0, inService: 0, inRepair: 0 },
+                humanResources: { doctors: 1, nurses: 2, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: '2do nivel hospital de vinto',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.huayllamayun@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 520,
+            },
+            {
+                id: 13,
+                snis: '300497',
+                establishment: 'C.S.C.I.CONFITAL',
+                municipality: 'Ramadas',
+                status: 'activo',
+                address: 'Calle Confital',
+                phone: '480-7788',
+                coords: { top: '60%', left: '50%' },
+                infrastructure: { beds: 18, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 4, xRay: 'Sí', artificialRespirator: 'No', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 2, inService: 1, inRepair: 1 },
+                humanResources: { doctors: 7, nurses: 10, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                details: {
+                    level: '2do nivel benigno sanchez',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Laboratorio', 'Vacunación'],
+                    email: 'csci.confital@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 1540,
+            },
+            {
+                id: 14,
+                snis: '300299',
+                establishment: 'C.S.C.I.RAMADAS',
+                municipality: 'Ramadas',
+                status: 'activo',
+                address: 'Av. Principal Ramadas',
+                phone: '480-9900',
+                coords: { top: '61%', left: '51%' },
+                infrastructure: { beds: 12, operatingRooms: 'No', deliveryRooms: 'Sí', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 3, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 5, nurses: 7, anesthesiologists: 'No', birthAttendants: 'Sí' },
+                details: {
+                    level: '2do nivel hospital de vinto',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Vacunación'],
+                    email: 'csci.ramadas@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 1122,
+            },
+            {
+                id: 15,
+                snis: '300292',
+                establishment: 'P.S. CHIVIRRANCHO',
+                municipality: 'Ramadas',
+                status: 'activo',
+                address: 'Comunidad Chivirrancho',
+                phone: '480-1122',
+                coords: { top: '62%', left: '52%' },
+                infrastructure: { beds: 6, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 1, inService: 0, inRepair: 1 },
+                humanResources: { doctors: 2, nurses: 3, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: '2do nivel hospital de vinto',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.chivirrancho@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 891,
+            },
+            {
+                id: 16,
+                snis: '300293',
+                establishment: 'P.S. CORACABA',
+                municipality: 'Ramadas',
+                status: 'activo',
+                address: 'Barrio Coracaba',
+                phone: '480-3344',
+                coords: { top: '63%', left: '53%' },
+                infrastructure: { beds: 5, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 0, inService: 0, inRepair: 0 },
+                humanResources: { doctors: 1, nurses: 2, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: '2do nivel hospital de vinto',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.coracaba@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 571,
+            },
+            {
+                id: 17,
+                snis: '300303',
+                establishment: 'C.S.C.I.WACA PLAYA',
+                municipality: 'Ramadas',
+                status: 'activo',
+                address: 'Zona Waca Playa',
+                phone: '480-5566',
+                coords: { top: '64%', left: '54%' },
+                infrastructure: { beds: 20, operatingRooms: 'Sí', deliveryRooms: 'Sí', anesthesiologyRoom: 'Sí', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 5, xRay: 'Sí', artificialRespirator: 'Sí', cardiograph: 'Sí', ophthalmoscope: 'Sí' },
+                vehicles: { ambulances: 2, inService: 2, inRepair: 0 },
+                humanResources: { doctors: 8, nurses: 12, anesthesiologists: 'Sí', birthAttendants: 'Sí' },
+                details: {
+                    level: '2do nivel benigno sanchez',
+                    hours: '24/7',
+                    services: ['Emergencia', 'Laboratorio', 'Rayos X'],
+                    email: 'csci.wacaplaya@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 1420,
+            },
+            {
+                id: 18,
+                snis: '300496',
+                establishment: 'P.S. ARAMASI',
+                municipality: 'Ramadas',
+                status: 'activo',
+                address: 'Comunidad Aramasi',
+                phone: '480-7788',
+                coords: { top: '65%', left: '55%' },
+                infrastructure: { beds: 4, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 1, inService: 1, inRepair: 0 },
+                humanResources: { doctors: 1, nurses: 2, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: '2do nivel hospital de vinto',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.aramasi@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 424,
+            },
+            {
+                id: 19,
+                snis: '300529',
+                establishment: 'P.S.APHARUMI',
+                municipality: 'Ramadas',
+                status: 'activo',
+                address: 'Barrio Apharumi',
+                phone: '480-9900',
+                coords: { top: '66%', left: '56%' },
+                infrastructure: { beds: 3, operatingRooms: 'No', deliveryRooms: 'No', anesthesiologyRoom: 'No', vaccinationRoom: 'Sí' },
+                equipment: { vitalSignsMonitor: 1, xRay: 'No', artificialRespirator: 'No', cardiograph: 'No', ophthalmoscope: 'No' },
+                vehicles: { ambulances: 0, inService: 0, inRepair: 0 },
+                humanResources: { doctors: 1, nurses: 2, anesthesiologists: 'No', birthAttendants: 'No' },
+                details: {
+                    level: '2do nivel benigno sanchez',
+                    hours: '8:00 - 16:00',
+                    services: ['Atención Primaria'],
+                    email: 'ps.apharumi@salud.gob.bo',
+                },
+                isochrones: {
+                    times: ['10 min', '20 min', '30 min'],
+                    colors: ['#008000', '#FFA500', '#FF0000']
+                },
+                populationAssigned: 443,
             }
         ];
-        
         let currentRole = null;
 
         function logout() {
@@ -700,9 +1102,65 @@
 
         function renderTablesContent(data = centersData) {
             headerTitle.textContent = 'Tablas';
-            
+
             const filtersHtml = `
                 <div class="filters-container">
+                    <select id="filter-department" class="filter-select" >
+                        <option value="">DEPARTAMENTO</option>
+                        <option value="Cochabamba">COCHABAMBA</option>
+                    </select>
+                    <select id="filter-red" class="filter-select" >
+                        <option value="">RED</option>
+                        <option value="Sacaba">SACABA</option>
+                        <option value="Punata">PUNATA</option>
+                        <option value="Ivirgarzama">IVIRGARZAMA</option>
+                        <option value="Quillacollo">QUILLACOLLO</option>
+                        <option value="Villa Tunari">VILLA TUNARI</option>
+                    </select>
+                    <select id="filter-municipality" class="filter-select" >
+                        <option value="">MUNICIPIO</option>
+                        <option value="Shinaota">SHINAOTA</option>
+                        <option value="Vinto">VINTO</option>
+                        <option value="Tiquipaya">TIQUIPAYA</option>
+                        <option value="Coloni">COLONI</option>
+                        <option value="Cocapata">COCAPATA</option>
+                        <option value="Morochata">MOROCHATA</option>
+                        <option value="Villa Tunari">VILLA TUNARI</option>
+                        <option value="Arque">ARQUE</option>
+                        <option value="Omereque">OMEREQUE</option>
+                        <option value="Vila Vila">VILA VILA</option>
+                    </select>
+                    <select id="filter-establishment" class="filter-select" >
+                        <option value="">ESTABLECIMIENTO</option>
+                        <option value="C.S.C.I.TAPACARI">C.S.C.I.TAPACARI</option>
+                        <option value="P.S.TUNAS VINTO">P.S.TUNAS VINTO</option>
+                        <option value="P.S.JATUN PAMPA">P.S.JATUN PAMPA</option>
+                        <option value="P.S.JIRONKOTA">P.S.JIRONKOTA</option>
+                        <option value="C.S.C.I.VILLA PEREIRA">C.S.C.I.VILLA PEREIRA</option>
+                        <option value="P.S. LEQUE">P.S. LEQUE</option>
+                        <option value="C.S.C.I.JAPO">C.S.C.I.JAPO</option>
+                        <option value="P.S. CHALLA">P.S. CHALLA</option>
+                        <option value="P.S.LLAVINI">P.S.LLAVINI</option>
+                        <option value="P.S. BOMBO">P.S. BOMBO</option>
+                        <option value="C.S.C.I.PONGO KASA">C.S.C.I.PONGO KASA</option>
+                        <option value="P.S.HUAYLLAMAYU">P.S.HUAYLLAMAYU</option>
+                        <option value="C.S.C.I.CONFITAL">C.S.C.I.CONFITAL</option>
+                        <option value="C.S.C.I.RAMADAS">C.S.C.I.RAMADAS</option>
+                        <option value="P.S. CHIVIRRANCHO">P.S. CHIVIRRANCHO</option>
+                        <option value="P.S. CORACABA">P.S. CORACABA</option>
+                        <option value="C.S.C.I.WACA PLAYA">C.S.C.I.WACA PLAYA</option>
+                        <option value="P.S. ARAMASI">P.S. ARAMASI</option>
+                        <option value="P.S.APHARUMI">P.S.APHARUMI</option>
+                    </select>
+                </div>
+                <div class="filters-container">
+                    <select id="filter-infrastructure" class="filter-select" onchange="selectCapacidad(this.value)">
+                        <option value="">CAPACIDAD</option>
+                        <option value="1">RESOLUTIVA</option>
+                        <option value="2">RESPUESTA</option>
+                    </select>
+                </div>
+                <div class="filters-container" id="filtrocapacidad" style="display: none;">
                     <select id="filter-infrastructure" class="filter-select">
                         <option value="">INFRAESTRUCTURA</option>
                         <option value="beds-gt-20">Más de 20 Camas</option>
@@ -730,7 +1188,7 @@
                     </select>
                 </div>
             `;
-            
+
             const tableHtml = `
                 <div class="table-container">
                     <table class="content-table">
@@ -739,9 +1197,10 @@
                                 <th>CÓDIGO SNIS</th>
                                 <th>ESTABLECIMIENTO</th>
                                 <th>MUNICIPIO</th>
-                                <th>ESTADO</th>
                                 <th>DIRECCIÓN</th>
                                 <th>TELÉFONO</th>
+                                <th>POBLACIÓN ASIGNADA</th>
+                                <th>ESTADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                         </thead>
@@ -751,9 +1210,10 @@
                                     <td>${center.snis.slice(0, 2) + center.snis.slice(-4)}</td>
                                     <td>${center.establishment}</td>
                                     <td>${center.municipality}</td>
-                                    <td>${center.status === 'activo' ? 'Activo' : 'Inactivo'}</td>
                                     <td>${center.address}</td>
                                     <td>${center.phone}</td>
+                                    <td>${center.populationAssigned}</td>
+                                    <td>${center.status === 'activo' ? 'Activo' : 'Inactivo'}</td>
                                     <td>
                                         <div class="action-icons">
                                             <i class="fas fa-eye view-detail-icon"></i>
@@ -766,9 +1226,17 @@
                     </table>
                 </div>
             `;
-            
+
             contentContainer.innerHTML = filtersHtml + tableHtml;
             attachTableListeners();
+        }
+
+        function selectCapacidad(valor) {
+            if (valor == '1') {
+                document.getElementById('filtrocapacidad').style.display = 'block';
+            } else {
+                document.getElementById('filtrocapacidad').style.display = 'none';
+            }
         }
 
         function handleFilters() {
@@ -787,7 +1255,7 @@
                     if (infrastructureFilter === 'anesthesiologyRoom-yes') match = match && center.infrastructure.anesthesiologyRoom === 'Sí';
                     if (infrastructureFilter === 'vaccinationRoom-yes') match = match && center.infrastructure.vaccinationRoom === 'Sí';
                 }
-                
+
                 if (equipmentFilter) {
                     if (equipmentFilter === 'xRay-yes') match = match && center.equipment.xRay === 'Sí';
                     if (equipmentFilter === 'artificialRespirator-yes') match = match && center.equipment.artificialRespirator === 'Sí';
@@ -800,23 +1268,25 @@
                     if (humanResourcesFilter === 'anesthesiologists-yes') match = match && center.humanResources.anesthesiologists === 'Sí';
                     if (humanResourcesFilter === 'birthAttendants-yes') match = match && center.humanResources.birthAttendants === 'Sí';
                 }
-                
+
                 if (vehiclesFilter) {
                     if (vehiclesFilter === 'ambulances-gt-1') match = match && center.vehicles.ambulances > 1;
                 }
 
                 return match;
             });
-            
+
             const tbody = document.querySelector('.content-table tbody');
             tbody.innerHTML = filteredData.map(center => `
                 <tr data-id="${center.id}">
                     <td>${center.snis}</td>
                     <td>${center.establishment}</td>
                     <td>${center.municipality}</td>
-                    <td>${center.status === 'activo' ? 'Activo' : 'Inactivo'}</td>
+                   
                     <td>${center.address}</td>
                     <td>${center.phone}</td>
+                    <td>${center.populationAssigned}</td>
+                    <td>${center.status === 'activo' ? 'Activo' : 'Inactivo'}</td>
                     <td>
                         <div class="action-icons">
                             <i class="fas fa-eye view-detail-icon"></i>
@@ -824,10 +1294,10 @@
                     </td>
                 </tr>
             `).join('');
-            
+
             attachTableListeners();
         }
-        
+
         function attachTableListeners() {
             document.querySelectorAll('.view-detail-icon').forEach(icon => {
                 icon.addEventListener('click', (e) => {
@@ -835,7 +1305,7 @@
                     const center = centersData.find(c => c.id == id);
                     if (center) {
                         detailModalTitle.textContent = `Detalle de ${center.establishment}`;
-                        
+
                         const detailHtml = `
                             <div class="detail-item">
                                 <strong>INFRAESTRUCTURA</strong>
@@ -875,7 +1345,7 @@
                                 </ul>
                             </div>
                         `;
-                        
+
                         detailContent.innerHTML = detailHtml;
                         detailModal.style.display = 'flex';
                     }
@@ -886,7 +1356,7 @@
                 select.addEventListener('change', handleFilters);
             });
         }
-        
+
         // Renderizar el mapa con los puntos y popups
         function renderMapsContent() {
             headerTitle.textContent = 'Mapas';
@@ -935,7 +1405,7 @@
                         popup.style.top = `${e.clientY - contentContainer.getBoundingClientRect().top - 20}px`;
                         popup.style.left = `${e.clientX - contentContainer.getBoundingClientRect().left + 20}px`;
                         popup.style.display = 'flex';
-                        
+
                         document.querySelector('.popup-link').addEventListener('click', (e) => {
                             e.preventDefault();
                             const centerId = e.target.dataset.id;
@@ -1036,7 +1506,7 @@
                 document.getElementById('maps-nav').classList.add('active');
             });
         }
-        
+
         // Manejadores de eventos de navegación y modales
         // document.querySelectorAll('.role-option').forEach(option => {
         //     option.addEventListener('click', (e) => {
@@ -1065,7 +1535,7 @@
         //                 z-index: 9999;
         //             `;
         //             document.body.appendChild(messageBox);
-                    
+
         //             setTimeout(() => {
         //                 messageBox.remove();
         //             }, 3000);
@@ -1077,9 +1547,9 @@
             item.addEventListener('click', () => {
                 navItems.forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
-                
+
                 headerTitle.textContent = item.textContent.trim();
-                
+
                 if (item.id === 'tables-nav') {
                     renderTablesContent();
                 } else if (item.id === 'maps-nav') {
@@ -1091,11 +1561,12 @@
         });
 
         document.querySelector('#detail-modal .modal-close').addEventListener('click', () => {
-                    detailModal.style.display = 'none';
-                });
-        
+            detailModal.style.display = 'none';
+        });
+
         // Inicializa la página de selección de rol
         // roleSelectionPage.style.display = 'flex';
     </script>
 </body>
+
 </html>
